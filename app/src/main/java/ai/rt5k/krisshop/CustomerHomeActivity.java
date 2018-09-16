@@ -3,6 +3,10 @@ package ai.rt5k.krisshop;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,9 +18,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import ai.rt5k.krisshop.ModelObjects.Product;
+import ai.rt5k.krisshop.RecyclerViewAdapters.BestSellerAdapter;
+import ai.rt5k.krisshop.RecyclerViewAdapters.ProductAdapter;
+
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView txtName, txtMembershipNo;
+    RecyclerView lstBestSellers, lstNewProducts;
+
+    // TODO: Remove dummy data
+    String[] names = {"PRECIOUS MOMENTS \"SINGAPORE GIRL\" (70TH ANNIVERSARY)", "Product 2", "Product 3", "Product 4"};
+    float[] prices = {10.0f, 1.0f, 2.55f, 10.70f};
+
+    ArrayList<Product> bestSellers;
+    BestSellerAdapter bestSellerAdapter;
+    ProductAdapter newProductAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +55,37 @@ public class CustomerHomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Set element values
-        // TODO: Get actual values from backend
         txtName = navigationView.getHeaderView(0).findViewById(R.id.txtName);
         txtMembershipNo = navigationView.getHeaderView(0).findViewById(R.id.txtMembershipNo);
+        lstBestSellers = findViewById(R.id.lstBestSellers);
+        lstNewProducts = findViewById(R.id.lstNewProducts);
 
+        bestSellers = new ArrayList<>();
+
+        // TODO: Get actual values from backend
         txtName.setText("Isaac Ashwin");
         txtMembershipNo.setText("Membership No: KF 8831139803");
+
+        // TODO: Get actual products from backend
+        for(int i = 0; i < names.length; i++) {
+            Product p = new Product();
+            p.name = names[i];
+            p.price = prices[i];
+
+            bestSellers.add(p);
+        }
+
+        bestSellerAdapter = new BestSellerAdapter(bestSellers);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CustomerHomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        lstBestSellers.setLayoutManager(mLayoutManager);
+        lstBestSellers.setItemAnimator(new DefaultItemAnimator());
+        lstBestSellers.setAdapter(bestSellerAdapter);
+
+        newProductAdapter = new ProductAdapter(bestSellers);
+        RecyclerView.LayoutManager productManager = new GridLayoutManager(CustomerHomeActivity.this, 2);
+        lstNewProducts.setLayoutManager(productManager);
+        lstNewProducts.setItemAnimator(new DefaultItemAnimator());
+        lstNewProducts.setAdapter(bestSellerAdapter);
     }
 
     @Override
