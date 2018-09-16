@@ -12,6 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
@@ -43,6 +52,9 @@ public class CustomerHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_customer_home, container, false);
+
+        MainApplication m = (MainApplication) getActivity().getApplicationContext();
+
         lstBestSellers = itemView.findViewById(R.id.lstBestSellers);
         lstNewProducts = itemView.findViewById(R.id.lstNewProducts);
 
@@ -63,18 +75,47 @@ public class CustomerHomeFragment extends Fragment {
         lstBestSellers.setItemAnimator(new DefaultItemAnimator());
         lstBestSellers.setAdapter(bestSellerAdapter);
 
-        newProductAdapter = new ProductAdapter(bestSellers);
-        newProductAdapter.setOnClickListener(new ClickListener() {
+        StringRequest productRequest = new StringRequest(Request.Method.GET, MainApplication.SERVER_URL + "/products", new Response.Listener<String>() {
             @Override
-            public void onItemClick(int position) {
-                // TODO: Load product view activity
-                Log.d("CustomerHomeActivity", position + "");
+            public void onResponse(String response) {
+                ArrayList<Product> products = new ArrayList<>();
+
+                try {
+                    JSONArray responseArray = new JSONArray(response);
+                    for(int i = 0; i < responseArray.length(); i++) {
+                        JSONObject o = responseArray.getJSONObject(i);
+                        Product p = new Product();
+                        p.name = o.getString("name");
+                        p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
+                        products.add(p);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                newProductAdapter = new ProductAdapter(products);
+                newProductAdapter.setOnClickListener(new ClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        // TODO: Load product view activity
+                        Log.d("CustomerHomeActivity", position + "");
+                    }
+                });
+
+                RecyclerView.LayoutManager productManager = new GridLayoutManager(getActivity(), 2);
+                lstNewProducts.setLayoutManager(productManager);
+                lstNewProducts.setItemAnimator(new DefaultItemAnimator());
+                lstNewProducts.setAdapter(newProductAdapter);
+                lstNewProducts.setNestedScrollingEnabled(false);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
-        RecyclerView.LayoutManager productManager = new GridLayoutManager(getActivity(), 2);
-        lstNewProducts.setLayoutManager(productManager);
-        lstNewProducts.setItemAnimator(new DefaultItemAnimator());
-        lstNewProducts.setAdapter(newProductAdapter);
+
+        m.mainQueue.add(productRequest);
 
         return itemView;
     }
