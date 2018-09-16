@@ -3,8 +3,8 @@
     package="ai.rt5k.krisshop">
 
     <application
-        android:allowBackup="true"
         android:name=".MainApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -20,7 +20,8 @@
         <activity
             android:name=".CustomerHomeActivity"
             android:label="@string/title_activity_customer_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CustomerRecieveActivity"></activity>
     </application>
 
 </manifest>

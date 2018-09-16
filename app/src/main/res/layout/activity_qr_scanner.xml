@@ -12,6 +12,11 @@
         android:text="Scan QR Code on your package to sign package"
         />
 
+    <com.dlazaro66.qrcodereaderview.QRCodeReaderView
+        android:id="@+id/qrdecoderview"
+        android:layout_width="match_parent"
+        android:layout_height="198dp" />
+
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
