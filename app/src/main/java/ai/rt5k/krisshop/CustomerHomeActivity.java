@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.RecyclerViewAdapters.BestSellerAdapter;
+import ai.rt5k.krisshop.RecyclerViewAdapters.ClickListener;
 import ai.rt5k.krisshop.RecyclerViewAdapters.ProductAdapter;
 
 public class CustomerHomeActivity extends AppCompatActivity
@@ -90,6 +92,12 @@ public class CustomerHomeActivity extends AppCompatActivity
         lstBestSellers.setAdapter(bestSellerAdapter);
 
         newProductAdapter = new ProductAdapter(bestSellers);
+        newProductAdapter.setOnClickListener(new ClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Log.d("CustomerHomeActivity", position + "");
+            }
+        });
         RecyclerView.LayoutManager productManager = new GridLayoutManager(CustomerHomeActivity.this, 2);
         lstNewProducts.setLayoutManager(productManager);
         lstNewProducts.setItemAnimator(new DefaultItemAnimator());
@@ -98,7 +106,7 @@ public class CustomerHomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
