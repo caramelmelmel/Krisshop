@@ -7,6 +7,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -42,7 +44,13 @@ public class CustomerHomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("KrisShop");
+
+        String s = "KRISSHOP";
+        SpannableString ss1 = new SpannableString(s);
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 1,4, 0); // set size
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 5,8, 0); // set size
+
+        toolbar.setTitle(ss1);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -85,7 +93,7 @@ public class CustomerHomeActivity extends AppCompatActivity
         RecyclerView.LayoutManager productManager = new GridLayoutManager(CustomerHomeActivity.this, 2);
         lstNewProducts.setLayoutManager(productManager);
         lstNewProducts.setItemAnimator(new DefaultItemAnimator());
-        lstNewProducts.setAdapter(bestSellerAdapter);
+        lstNewProducts.setAdapter(newProductAdapter);
     }
 
     @Override
