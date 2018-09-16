@@ -170,7 +170,7 @@
                         android:layout_centerVertical="true"
                         android:progress="12"
                         android:max="100"
-
+                        android:backgroundTint="@color/colorGrey"
                         android:progressTint="@color/colorAlert"
                         style="?android:attr/progressBarStyleHorizontal"
                         />
