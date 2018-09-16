@@ -67,6 +67,7 @@ public class CustomerHomeFragment extends Fragment {
         newProductAdapter.setOnClickListener(new ClickListener() {
             @Override
             public void onItemClick(int position) {
+                // TODO: Load product view activity
                 Log.d("CustomerHomeActivity", position + "");
             }
         });

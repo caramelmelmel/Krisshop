@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    NavigationView navigationView;
     TextView txtName, txtMembershipNo;
 
     @Override
@@ -47,7 +48,7 @@ public class CustomerHomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         txtName = navigationView.getHeaderView(0).findViewById(R.id.txtName);
@@ -125,6 +126,16 @@ public class CustomerHomeActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
 
+        int size = navigationView.getMenu().size();
+        for (int i = 0; i < size; i++) {
+            MenuItem item = navigationView.getMenu().getItem(i);
+            item.setChecked(false);
+            if(item.getSubMenu() != null) {
+                for(int j = 0; j < item.getSubMenu().size(); j++) {
+                    item.getSubMenu().getItem(j).setChecked(false);
+                }
+            }
+        }
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title

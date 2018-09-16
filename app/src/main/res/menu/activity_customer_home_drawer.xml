@@ -3,29 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/home"
-            android:icon="@drawable/baseline_home_24"
-            android:title="Home" />
-        <item
-            android:id="@+id/inflight_purchases"
-            android:icon="@drawable/baseline_airplanemode_active_24"
-            android:title="In-Flight Purchases" />
-        <item
-            android:id="@+id/home_purchases"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Home Purchases" />
-        <item
-            android:id="@+id/official_stores"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Official Stores" />
-        <item
-            android:id="@+id/concept_stores"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Concept Stores" />
-
-    </group>
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/inflight_purchases"
+        android:icon="@drawable/baseline_airplanemode_active_24"
+        android:title="In-Flight Purchases" />
+    <item
+        android:id="@+id/home_purchases"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Home Purchases" />
+    <item
+        android:id="@+id/official_stores"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Official Stores" />
+    <item
+        android:id="@+id/concept_stores"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Concept Stores" />
 
     <item android:title="Account">
         <menu>
