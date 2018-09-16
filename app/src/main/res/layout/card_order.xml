@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_order"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/card_order_side_margin"
+        android:layout_marginRight="@dimen/card_order_side_margin"
+        android:layout_marginTop="@dimen/card_order_side_margin"
+        card_view:cardCornerRadius="4dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:id="@+id/status_circle"
+                android:layout_width="@dimen/card_order_status_circle"
+                android:layout_height="@dimen/card_order_status_circle"
+                android:background="@drawable/status_circle"
+                android:layout_margin="@dimen/card_order_items_margin"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/txt_order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_order_items_margin"
+                card_view:layout_constraintLeft_toRightOf="@id/status_circle"
+                card_view:layout_constraintTop_toTopOf="@id/status_circle"
+                card_view:layout_constraintBottom_toBottomOf="@+id/status_circle"
+                android:text="Status"
+                android:textSize="@dimen/card_order_text_size"/>
+            
+            <View
+                android:id="@+id/card_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backgroundGrey"
+                android:layout_marginTop="@dimen/card_order_items_margin"
+                card_view:layout_constraintTop_toBottomOf="@+id/status_circle"
+                />
+
+            <TextView
+                android:id="@+id/txt_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_order_items_margin"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/card_divider"
+                android:text="Item Name"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold" />
+            
+            <TextView
+                android:id="@+id/txt_flight_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_order_items_margin"
+                card_view:layout_constraintTop_toBottomOf="@+id/txt_item_name"
+                card_view:layout_constraintLeft_toLeftOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                android:text="Flight number"/>
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_order_items_margin"
+                card_view:layout_constraintTop_toBottomOf="@id/card_divider"
+                card_view:layout_constraintRight_toRightOf="parent"
+                android:text="Price"
+                android:textStyle="bold"
+                android:textColor="@color/colorOK"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
