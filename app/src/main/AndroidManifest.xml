@@ -22,6 +22,7 @@
             android:label="@string/title_activity_customer_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CustomerRecieveActivity"></activity>
+        <activity android:name=".OrderDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
-public class CustomerRecieveActivity extends AppCompatActivity implements QRCodeReaderView.OnQRCodeReadListener {
+public class CustomerRecieveActivity extends AppCompatActivity {
 
     private TextView resultTextView;
     private QRCodeReaderView qrCodeReaderView;
