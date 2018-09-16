@@ -6,6 +6,7 @@
     <color name="colorAlert">#FEA000</color>
     <color name="colorOK">#5FA87D</color>
     <color name="colorGrey">#909090</color>
+    <color name="colorBlack">#000000</color>
     <color name="backgroundGrey">#EBEBEB</color>
     <color name="text">#FFFFFF</color>
     <color name="textHint">#999999</color>

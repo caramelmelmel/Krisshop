@@ -9,4 +9,10 @@
     <dimen name="card_order_items_margin">12dp</dimen>
     <dimen name="card_order_text_size">14sp</dimen>
     <dimen name="card_order_status_circle">12dp</dimen>
+    <dimen name="card_order_padding">10dp</dimen>
+
+    <dimen name="progress_ordered">12</dimen>
+    <dimen name="progress_packed">36</dimen>
+    <dimen name="progress_onboard">61</dimen>
+    <dimen name="progress_arrived">86</dimen>
 </resources>
