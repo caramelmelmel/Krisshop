@@ -147,10 +147,22 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/txtOrderCollected"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Order Collected"
+                    android:textColor="@color/colorAlert"
+                    android:visibility="gone"/>
+
                 <RelativeLayout
+                    android:id="@+id/layoutProgressSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    >
 
                     <ProgressBar
                         android:layout_width="match_parent"

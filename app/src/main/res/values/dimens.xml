@@ -5,14 +5,20 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Dimensions for order page -->
     <dimen name="card_order_side_margin">8dp</dimen>
     <dimen name="card_order_items_margin">12dp</dimen>
     <dimen name="card_order_text_size">14sp</dimen>
     <dimen name="card_order_status_circle">12dp</dimen>
     <dimen name="card_order_padding">10dp</dimen>
 
+    <!-- Dimensions for order details page -->
     <dimen name="progress_ordered">12</dimen>
     <dimen name="progress_packed">36</dimen>
     <dimen name="progress_onboard">61</dimen>
     <dimen name="progress_arrived">86</dimen>
+
+    <!-- Dimensions for shopping cart page -->
+    <dimen name="card_image_size">100dp</dimen>
 </resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardCartItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/card_order_side_margin"
+        android:layout_marginRight="@dimen/card_order_side_margin"
+        android:layout_marginTop="@dimen/card_order_side_margin"
+        card_view:cardCornerRadius="4dp">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgCartItem"
+                android:layout_margin="@dimen/card_order_items_margin"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="@dimen/card_image_size"
+                android:layout_height="@dimen/card_image_size"
+                android:src="@drawable/default_bg"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/txtCartItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgCartItem"
+                android:layout_marginTop="@dimen/card_order_items_margin"
+                android:text="Item Name"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/card_order_items_margin"
+                android:layout_marginRight="@dimen/card_order_items_margin"
+                android:text="Price"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/colorGrey"/>
+
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/btnRemove"
+                android:layout_alignParentBottom="true"
+                android:text="CONFIRM"
+                android:textColor="@color/colorOK"
+                android:background="#00000000"
+                />
+
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="REMOVE"
+                android:textColor="@color/colorAlert"
+                android:background="#00000000"
+                />
+
+        </RelativeLayout>
+        
+    </android.support.v7.widget.CardView>
+</LinearLayout>
