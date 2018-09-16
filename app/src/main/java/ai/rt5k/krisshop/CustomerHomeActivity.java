@@ -3,6 +3,8 @@ package ai.rt5k.krisshop;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,25 +23,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import ai.rt5k.krisshop.ModelObjects.Product;
-import ai.rt5k.krisshop.RecyclerViewAdapters.BestSellerAdapter;
-import ai.rt5k.krisshop.RecyclerViewAdapters.ClickListener;
-import ai.rt5k.krisshop.RecyclerViewAdapters.ProductAdapter;
-
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView txtName, txtMembershipNo;
-    RecyclerView lstBestSellers, lstNewProducts;
-
-    // TODO: Remove dummy data
-    String[] names = {"PRECIOUS MOMENTS \"SINGAPORE GIRL\" (70TH ANNIVERSARY)", "Product 2", "Product 3", "Product 4"};
-    float[] prices = {10.0f, 1.0f, 2.55f, 10.70f};
-
-    ArrayList<Product> bestSellers;
-    BestSellerAdapter bestSellerAdapter;
-    ProductAdapter newProductAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,44 +50,14 @@ public class CustomerHomeActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Set element values
         txtName = navigationView.getHeaderView(0).findViewById(R.id.txtName);
         txtMembershipNo = navigationView.getHeaderView(0).findViewById(R.id.txtMembershipNo);
-        lstBestSellers = findViewById(R.id.lstBestSellers);
-        lstNewProducts = findViewById(R.id.lstNewProducts);
-
-        bestSellers = new ArrayList<>();
 
         // TODO: Get actual values from backend
         txtName.setText("Isaac Ashwin");
         txtMembershipNo.setText("Membership No: KF 8831139803");
 
-        // TODO: Get actual products from backend
-        for(int i = 0; i < names.length; i++) {
-            Product p = new Product();
-            p.name = names[i];
-            p.price = prices[i];
-
-            bestSellers.add(p);
-        }
-
-        bestSellerAdapter = new BestSellerAdapter(bestSellers);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(CustomerHomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        lstBestSellers.setLayoutManager(mLayoutManager);
-        lstBestSellers.setItemAnimator(new DefaultItemAnimator());
-        lstBestSellers.setAdapter(bestSellerAdapter);
-
-        newProductAdapter = new ProductAdapter(bestSellers);
-        newProductAdapter.setOnClickListener(new ClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Log.d("CustomerHomeActivity", position + "");
-            }
-        });
-        RecyclerView.LayoutManager productManager = new GridLayoutManager(CustomerHomeActivity.this, 2);
-        lstNewProducts.setLayoutManager(productManager);
-        lstNewProducts.setItemAnimator(new DefaultItemAnimator());
-        lstNewProducts.setAdapter(newProductAdapter);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
     @Override
@@ -134,10 +90,47 @@ public class CustomerHomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        selectDrawerItem(item);
+        return true;
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch(menuItem.getItemId()) {
+            case R.id.home:
+                fragmentClass = CustomerHomeFragment.class;
+                break;
+
+            case R.id.orders:
+                fragmentClass = CustomerOrdersFragment.class;
+                break;
+
+            default:
+                fragmentClass = CustomerHomeFragment.class;
+        }
+
+
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        //setTitle(menuItem.getTitle());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        drawer.closeDrawers();
     }
 }
