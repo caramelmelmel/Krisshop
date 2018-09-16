@@ -21,4 +21,7 @@
 
     <!-- Dimensions for shopping cart page -->
     <dimen name="card_image_size">100dp</dimen>
+
+    <!-- Dimensions for shopping cart page -->
+    <dimen name="qr_reader_txt_margin">18dp</dimen>
 </resources>

@@ -15,13 +15,29 @@
         </shape>
     </item>
 
-    <item android:state_enabled="true">
+    <item android:state_enabled="true"
+          android:state_activated="true">
         <shape
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="oval">
 
             <solid
                 android:color="@color/colorOK"/>
+
+            <size
+                android:width="12dp"
+                android:height="12dp"/>
+        </shape>
+    </item>
+
+    <item android:state_activated="false"
+          android:state_enabled="true">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+
+            <solid
+                android:color="@color/colorGrey"/>
 
             <size
                 android:width="12dp"
