@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         m = (MainApplication) getApplicationContext();
+        if(m.mainQueue == null) {
+            m.mainQueue = Volley.newRequestQueue(LoginActivity.this);
+        }
 
         txtTitle = findViewById(R.id.txtTitle);
         edtUsername = findViewById(R.id.edtUsername);
@@ -55,29 +59,29 @@ public class LoginActivity extends AppCompatActivity {
             StringRequest loginRequest = new StringRequest(Request.Method.POST,MainApplication.SERVER_URL + "/login", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.d("LoginActivity", response);
+                    if(response.equals("SUCCESS")) {
+                        Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                        startActivity(customerHomeIntent);
+                        finish();
+                    }
+                    Log.e("LoginActivity", response);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("LoginActivity", error.getMessage());
+                    Log.e("LoginActivity", error.toString());
                 }
             }){
                 @Override
                 protected Map<String,String> getParams(){
                     Map<String,String> params = new HashMap<String, String>();
-                    params.put("username", edtUsername.getText().toString());
+                    params.put("mem_id", edtUsername.getText().toString());
                     params.put("password", edtPassword.getText().toString());
                     return params;
                 }
             };
 
-            // TODO: Actually ping server
-            // m.mainQueue.add(loginRequest);
-
-            Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-            startActivity(customerHomeIntent);
-            finish();
+            m.mainQueue.add(loginRequest);
             }
         });
     }
