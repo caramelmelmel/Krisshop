@@ -1,5 +1,6 @@
 package ai.rt5k.krisshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -85,6 +86,12 @@ public class CustomerHomeActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        switch (id) {
+            case R.id.cart:
+                Intent cartIntent = new Intent(this, ShoppingCartActivity.class);
+                startActivity(cartIntent);
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

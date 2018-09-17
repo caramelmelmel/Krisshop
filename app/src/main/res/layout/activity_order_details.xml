@@ -238,7 +238,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
-                            android:tint="@color/colorGrey"
+                            android:tint="@color/colorLightGrey"
                             />
 
                         <ImageView
@@ -247,6 +247,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
+                            android:tint="@color/colorLightGrey"
                             />
 
                         <ImageView
@@ -255,7 +256,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
-                            android:tint="#BBBBBB"
+                            android:tint="@color/colorLightGrey"
                             />
 
                     </LinearLayout>

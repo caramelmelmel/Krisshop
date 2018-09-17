@@ -66,7 +66,7 @@ public class RateDialogFragment extends DialogFragment {
                 dismiss();
                 Activity parent = getActivity();
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("result", qrcodeText);
+                returnIntent.putExtra("qrcode", qrcodeText);
                 parent.setResult(Activity.RESULT_OK, returnIntent);
                 parent.finish();
             }

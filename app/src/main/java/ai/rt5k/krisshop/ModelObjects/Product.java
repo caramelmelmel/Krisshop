@@ -8,4 +8,11 @@ public class Product {
     public float price;
     public Bitmap image;
     public String imageUrl;
+
+    public Product() {}
+
+    public Product(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
 }

@@ -55,7 +55,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                String qrcodeText = data.getStringExtra("result");
+                String qrcodeText = data.getStringExtra("qrcode");
                 Log.d(TAG, qrcodeText);
 
                 // TODO: Check if qrcode is valid and save state

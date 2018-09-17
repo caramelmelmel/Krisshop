@@ -56,6 +56,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // TODO: Remove this block
+                Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                startActivity(customerHomeIntent);
+                finish();
+
             StringRequest loginRequest = new StringRequest(Request.Method.POST,MainApplication.SERVER_URL + "/login", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
