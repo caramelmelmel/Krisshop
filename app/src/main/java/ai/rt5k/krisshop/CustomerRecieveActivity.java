@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
@@ -14,11 +15,11 @@ public class CustomerRecieveActivity extends AppCompatActivity {
 
     private QRCodeReaderView qrcodeReaderView;
     private static final int PERMISSIONS_REQUEST_CAMERA = 0;
+    private static final String TAG = "CustomerRecieveActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr_scanner);
 
         // Check for camera permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -28,6 +29,7 @@ public class CustomerRecieveActivity extends AppCompatActivity {
                     PERMISSIONS_REQUEST_CAMERA);
 
         } else {
+            setContentView(R.layout.activity_qr_scanner);
             setQRReader();
         }
     }
@@ -41,11 +43,13 @@ public class CustomerRecieveActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // permission was granted
+                    setContentView(R.layout.activity_qr_scanner);
                     setQRReader();
+                    qrcodeReaderView.startCamera();
 
                 } else {
                     // permission denied
-
+                    Log.d(TAG, "Permission denied");
                 }
                 return;
             }
@@ -61,6 +65,22 @@ public class CustomerRecieveActivity extends AppCompatActivity {
         });
         qrcodeReaderView.setQRDecodingEnabled(true);
         qrcodeReaderView.setBackCamera();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (qrcodeReaderView != null) {
+            qrcodeReaderView.startCamera();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (qrcodeReaderView != null) {
+            qrcodeReaderView.stopCamera();
+        }
     }
 }
 

@@ -21,8 +21,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btnConfirmRecieved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(OrderDetailsActivity.this, CustomerRecieveActivity.class);
-                startActivity(i);
+                Intent orderDetailsIntent = new Intent(OrderDetailsActivity.this, CustomerRecieveActivity.class);
+                startActivity(orderDetailsIntent);
             }
         });
     }
