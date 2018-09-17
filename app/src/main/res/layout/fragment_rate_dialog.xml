@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    tools:context=".RateDialogFragment">
+
+    <TextView
+        android:id="@+id/txtRatingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtRatingPrompt"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="18dp"
+        android:text="Rate your package"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/txtRatingPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtRatingTitle"
+        android:text="Are you satisfied with condition of your package?"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/card_order_text_size"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/layoutRatingStars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtRatingPrompt"
+        android:weightSum="5"
+        android:layout_margin="24dp">
+
+        <ImageView
+            android:id="@+id/ratingStar1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_star"/>
+
+        <ImageView
+            android:id="@+id/ratingStar2"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_star"/>
+
+        <ImageView
+            android:id="@+id/ratingStar3"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_star"/>
+
+        <ImageView
+            android:id="@+id/ratingStar4"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_star"/>
+
+        <ImageView
+            android:id="@+id/ratingStar5"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rating_star"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutRatingStars"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="#00000000"
+        android:text="CONFIRM"
+        android:textStyle="bold"
+        android:textColor="@color/colorGrey"
+        android:clickable="false"/>
+
+</RelativeLayout>

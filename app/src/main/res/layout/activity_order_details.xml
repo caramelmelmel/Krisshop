@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Order Collected"
-                    android:textColor="@color/colorAlert"
+                    android:textColor="@color/colorOK"
                     android:visibility="gone"/>
 
                 <RelativeLayout
