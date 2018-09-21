@@ -87,6 +87,7 @@ public class CustomerHomeFragment extends Fragment {
                         Product p = new Product();
                         p.name = o.getString("name");
                         p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
+                        p.imageUrl = o.getString("image");
                         products.add(p);
                     }
                 } catch (JSONException e) {

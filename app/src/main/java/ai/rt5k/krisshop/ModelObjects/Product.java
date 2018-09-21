@@ -2,7 +2,9 @@ package ai.rt5k.krisshop.ModelObjects;
 
 import android.graphics.Bitmap;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     public int id;
     public String name;
     public float price;

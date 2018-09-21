@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +24,18 @@
         <activity
             android:name=".CustomerHomeActivity"
             android:label="@string/title_activity_customer_home"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CustomerRecieveActivity" />
-        <activity android:name=".OrderDetailsActivity" />
-        <activity android:name=".ShoppingCartActivity" />
-        <activity android:name=".EmOrderDetailsActivity" />
-        <activity android:name=".EmHomeActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerRecieveActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ShoppingCartActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EmOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EmHomeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

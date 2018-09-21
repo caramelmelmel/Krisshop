@@ -2,6 +2,7 @@ package ai.rt5k.krisshop.RecyclerViewAdapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import ai.rt5k.krisshop.ImageThread;
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.R;
 
@@ -44,6 +46,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         viewHolder.position = i;
         if(product.image != null) {
             viewHolder.imgPicture.setImageBitmap(product.image);
+        }
+        else if(product.imageUrl != null) {
+            Log.d("ProductAdapter", "Starting thread");
+            ImageThread t = new ImageThread(product.imageUrl, viewHolder.imgPicture);
+            t.start();
         }
 
         if(clickListener != null) {

@@ -32,6 +32,7 @@ public class CustomerOrdersFragment extends Fragment {
     ArrayList<Order> orders, completedOrders;
 
     // TODO: Remove dummy data
+    String[] ids = {"#10000", "#00102", "#67219"};
     String[] names = {"PRODUCT 1", "PRODUCT 2", "PRODUCT 3"};
     String[] statuses = {"Onboard", "Packed", "Ordered"};
     float[] prices = {122f, 29f, 33.2f};
@@ -59,6 +60,7 @@ public class CustomerOrdersFragment extends Fragment {
         // TODO: get actual data from backend
         for(int i = 0; i < names.length; i++) {
             Order o = new Order();
+            o.id = ids[i];
             o.name = names[i];
             o.price = prices[i];
             o.status = statuses[i];
@@ -82,6 +84,9 @@ public class CustomerOrdersFragment extends Fragment {
             public void onItemClick(int position) {
                 Log.d("CustomerOrdersFragment", "Active order: " + position);
                 Intent orderDetailsIntent = new Intent(getActivity(), OrderDetailsActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("order", orders.get(position));
+                orderDetailsIntent.putExtra("orderBundle", b);
                 startActivity(orderDetailsIntent);
             }
         });

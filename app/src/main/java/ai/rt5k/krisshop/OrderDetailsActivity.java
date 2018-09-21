@@ -11,9 +11,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class OrderDetailsActivity extends AppCompatActivity {
+import ai.rt5k.krisshop.ModelObjects.Order;
 
+public class OrderDetailsActivity extends AppCompatActivity {
+    Order order;
     Button btnConfirmRecieved;
+    TextView txtItemName, txtOrderId;
     TextView txtOrderCollected;
     RelativeLayout layoutProgressSection;
     private static final int customerQRCodeRequest = 1;
@@ -24,6 +27,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        order = (Order) getIntent().getBundleExtra("orderBundle").getSerializable("order");
+
+        txtItemName = findViewById(R.id.txt_item_name);
+        txtOrderId = findViewById(R.id.txt_order_id);
 
         txtOrderCollected = findViewById(R.id.txtOrderCollected);
         layoutProgressSection = findViewById(R.id.layoutProgressSection);
@@ -37,6 +45,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 startActivityForResult(orderDetailsIntent, customerQRCodeRequest);
             }
         });
+
+        txtItemName.setText(order.name);
+        txtOrderId.setText(order.id);
     }
 
     @Override

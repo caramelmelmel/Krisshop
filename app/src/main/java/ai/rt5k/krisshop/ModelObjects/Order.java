@@ -1,6 +1,8 @@
 package ai.rt5k.krisshop.ModelObjects;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     public String name;
     public String id;
     public float price;
