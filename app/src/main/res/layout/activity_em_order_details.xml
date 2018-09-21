@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_order_side_margin"
+        android:text="Item Name"
+        android:textStyle="bold"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_marginLeft="@dimen/card_order_side_margin"
+        android:layout_marginRight="@dimen/card_order_side_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/backgroundGrey">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/card_order_padding"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/card_order_side_margin"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/txt_order_id_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="ORDER ID"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/card_order_text_size"/>
+                    <TextView
+                        android:id="@+id/txt_order_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_order_id_title"
+                        android:layout_centerHorizontal="true"
+                        android:text="#12345678"
+                        android:textSize="@dimen/card_order_text_size"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="@color/colorGrey"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/txt_flight_number_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="FLIGHT"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/card_order_text_size"/>
+                    <TextView
+                        android:id="@+id/txt_flight_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_flight_number_title"
+                        android:layout_centerHorizontal="true"
+                        android:text="SQ8308"
+                        android:textSize="@dimen/card_order_text_size"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:background="@color/colorAccent">
+
+                <TextView
+                    android:id="@+id/txtOrderCollected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Order Collected"
+                    android:textColor="@color/colorOK"
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:id="@+id/layoutProgressSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <ProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerVertical="true"
+                        android:progress="12"
+                        android:max="100"
+                        android:progressBackgroundTint="@color/colorGrey"
+                        android:progressTint="@color/colorAlert"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/layoutProgressBar"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ordered"
+                            android:gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Packed"
+                            android:gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Onboard"
+                            android:gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Arrived"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <ImageView
+                            android:id="@+id/checkpointOrdered"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/checkpoint_active"
+                            />
+
+                        <ImageView
+                            android:id="@+id/checkpointPacked"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/checkpoint_inactive"
+                            android:tint="@color/colorLightGrey"
+                            />
+
+                        <ImageView
+                            android:id="@+id/checkpointOnboard"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/checkpoint_inactive"
+                            android:tint="@color/colorLightGrey"
+                            />
+
+                        <ImageView
+                            android:id="@+id/checkpointArrived"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/checkpoint_inactive"
+                            android:tint="@color/colorLightGrey"
+                            />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pagerImageScroller"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone">
+            </android.support.v4.view.ViewPager>
+
+            <Button
+                android:id="@+id/btnConfirmReceived"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_order_padding"
+                android:elevation="0dp"
+                android:padding="@dimen/card_order_padding"
+                android:text="CONFIRM PACKED"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                android:backgroundTint="@color/colorAlert"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

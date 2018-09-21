@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:padding="3dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardOrderEM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/card_order_side_margin"
+        android:layout_marginRight="@dimen/card_order_side_margin"
+        android:layout_marginTop="@dimen/card_order_side_margin"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgOrderEM"
+                android:layout_margin="@dimen/card_order_items_margin"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="@dimen/card_image_size"
+                android:layout_height="@dimen/card_image_size"
+                android:src="@drawable/default_bg"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/txtOrderNameEM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgOrderEM"
+                android:layout_marginTop="@dimen/card_order_items_margin"
+                android:text="Item Name"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txtOrderID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/card_order_items_margin"
+                android:layout_toRightOf="@+id/imgOrderEM"
+                android:layout_below="@+id/txtOrderNameEM"
+                android:text="Order ID"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/colorAlert"/>
+
+            <TextView
+                android:id="@+id/txtFlightNumberEM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/imgOrderEM"
+                android:text="Flight Number"
+                android:textColor="@color/colorGrey"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
