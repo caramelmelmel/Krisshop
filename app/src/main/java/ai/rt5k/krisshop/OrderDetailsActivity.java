@@ -40,9 +40,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btnConfirmRecieved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent orderDetailsIntent = new Intent(OrderDetailsActivity.this,
-                                                        CustomerRecieveActivity.class);
-                startActivityForResult(orderDetailsIntent, customerQRCodeRequest);
+//                Intent orderDetailsIntent = new Intent(OrderDetailsActivity.this,
+//                                                        CustomerRecieveActivity.class);
+//                startActivityForResult(orderDetailsIntent, customerQRCodeRequest);
+                Intent i = new Intent(OrderDetailsActivity.this,
+                                        EmCameraActivity.class);
+                startActivity(i);
             }
         });
 

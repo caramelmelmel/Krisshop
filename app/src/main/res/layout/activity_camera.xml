@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtCapturePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/qr_reader_txt_margin"
+        android:text="Take 3 photos of the package"
+        />
+
+    <SurfaceView
+        android:id="@+id/surfaceCamera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txtCapturePrompt"
+        android:layout_above="@id/imgTakePhoto"
+        >
+    </SurfaceView>
+
+    <ImageView
+        android:id="@+id/imgTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:clickable="true"
+        android:src="@drawable/camera_alt"/>
+
+
+</RelativeLayout>
