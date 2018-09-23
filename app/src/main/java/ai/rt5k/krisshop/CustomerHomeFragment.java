@@ -1,6 +1,7 @@
 package ai.rt5k.krisshop;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -87,6 +88,7 @@ public class CustomerHomeFragment extends Fragment {
                         Product p = new Product();
                         p.name = o.getString("name");
                         p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
+                        p.miles = Integer.parseInt(o.getString("miles").split(" ")[0].replace(",", ""));
                         p.imageUrl = o.getString("image");
                         products.add(p);
                     }
