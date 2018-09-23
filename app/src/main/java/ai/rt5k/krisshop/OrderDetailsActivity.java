@@ -11,16 +11,22 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import ai.rt5k.krisshop.ModelObjects.Order;
 
 public class OrderDetailsActivity extends AppCompatActivity {
     Order order;
     Button btnConfirmRecieved;
-    TextView txtItemName, txtOrderId;
+    TextView txtItemName, txtOrderId, txtAmount, txtFlightNumber;
     TextView txtOrderCollected;
     RelativeLayout layoutProgressSection;
+
     private static final int customerQRCodeRequest = 1;
     private static final String TAG = "OrderDetailsActivity";
+    private static DecimalFormat df2 = new DecimalFormat(".00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         txtItemName = findViewById(R.id.txt_item_name);
         txtOrderId = findViewById(R.id.txt_order_id);
+        txtAmount = findViewById(R.id.txt_amount);
+        txtFlightNumber = findViewById(R.id.txt_flight_number);
 
         txtOrderCollected = findViewById(R.id.txtOrderCollected);
         layoutProgressSection = findViewById(R.id.layoutProgressSection);
@@ -48,6 +56,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         txtItemName.setText(order.name);
         txtOrderId.setText(order.id);
+        txtAmount.setText("$" + df2.format(order.price));
+        txtFlightNumber.setText(order.flightNumber);
     }
 
     @Override

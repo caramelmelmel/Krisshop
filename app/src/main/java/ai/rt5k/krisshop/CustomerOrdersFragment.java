@@ -102,6 +102,11 @@ public class CustomerOrdersFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 Log.d("CustomerOrdersFragment", "Completed order: " + position);
+                Intent orderDetailsIntent = new Intent(getActivity(), OrderDetailsActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("order", completedOrders.get(position));
+                orderDetailsIntent.putExtra("orderBundle", b);
+                startActivity(orderDetailsIntent);
             }
         });
         RecyclerView.LayoutManager completedLayoutManager = new LinearLayoutManager(getActivity());

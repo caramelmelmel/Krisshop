@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
-import ai.rt5k.krisshop.ImageThread;
+import ai.rt5k.krisshop.Util.ImageThread;
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.R;
 
@@ -43,6 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Product product = products.get(i);
         viewHolder.txtName.setText(product.name);
         viewHolder.txtPrice.setText("$" + df2.format(product.price));
+        viewHolder.txtMiles.setText(NumberFormat.getNumberInstance(Locale.US).format(product.miles) + " miles ");
         viewHolder.position = i;
         if(product.image != null) {
             viewHolder.imgPicture.setImageBitmap(product.image);
@@ -72,7 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public int position;
 
         public View itemView;
-        public TextView txtName, txtPrice;
+        public TextView txtName, txtPrice, txtMiles;
         public ImageView imgPicture;
         public Button btnAddToCart;
 
@@ -81,6 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             itemView = view;
             txtName = view.findViewById(R.id.txtName);
             txtPrice = view.findViewById(R.id.txtPrice);
+            txtMiles = view.findViewById(R.id.txtMiles);
             imgPicture = view.findViewById(R.id.imgPicture);
             btnAddToCart = view.findViewById(R.id.btnAddToCart);
         }
