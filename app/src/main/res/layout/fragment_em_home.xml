@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_edt_bg"
+                android:padding="8dp"
                 android:alpha="0.5"
                 />
 

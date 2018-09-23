@@ -41,8 +41,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".EmHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmCameraActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EmCameraActivity"></activity>
+        <activity android:name=".EmOrdersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
