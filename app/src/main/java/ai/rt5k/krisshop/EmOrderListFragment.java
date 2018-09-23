@@ -19,6 +19,8 @@ import ai.rt5k.krisshop.RecyclerViewAdapters.ClickListener;
 import ai.rt5k.krisshop.RecyclerViewAdapters.EmployeeOrderAdapter;
 import ai.rt5k.krisshop.RecyclerViewAdapters.OrderAdapter;
 
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +29,7 @@ import ai.rt5k.krisshop.RecyclerViewAdapters.OrderAdapter;
  */
 public class EmOrderListFragment extends Fragment {
     private static final String ARG_FILTER = "filter";
+    private static final int ORDER_DETAIL_INTENT = 0;
 
     private String filter;
     
@@ -85,7 +88,7 @@ public class EmOrderListFragment extends Fragment {
                 Bundle b = new Bundle();
                 b.putSerializable("order", orders.get(position));
                 orderDetailsIntent.putExtra("orderBundle", b);
-                startActivity(orderDetailsIntent);
+                startActivityForResult(orderDetailsIntent, ORDER_DETAIL_INTENT);
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -96,4 +99,12 @@ public class EmOrderListFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ORDER_DETAIL_INTENT && resultCode == RESULT_OK) {
+            // Perform update of data
+        }
+    }
 }

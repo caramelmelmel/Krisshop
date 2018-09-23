@@ -29,6 +29,8 @@ public class EmOrderDetailsActivity extends AppCompatActivity {
 
         order = (Order) getIntent().getBundleExtra("orderBundle").getSerializable("order");
 
+        getSupportActionBar().setTitle("Order " + order.id);
+
         txtItemName = findViewById(R.id.txt_item_name);
         txtOrderId = findViewById(R.id.txt_order_id);
         txtFlightNumber = findViewById(R.id.txt_flight_number);
