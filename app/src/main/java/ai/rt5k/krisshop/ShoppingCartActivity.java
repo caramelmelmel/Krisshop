@@ -63,14 +63,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
     };
 
     static final String[] colors = new String[] {
-            "#FF8A80",
-            "#91BAFF",
-            "#FFD180",
-            "#A7FFEB",
-            "#B389FF",
-            "#FFFF8D",
-            "#CFFF97",
-            "#F8BBD0"
+            "#FF4333",
+            "#FFFF6A",
+            "#FF9800",
+            "#AAFF48",
+            "#2979FF",
+            "#10FFC9",
+            "#FF52FF",
+            "#FF75A5"
     };
 
     boolean[] selectedImage = new boolean[] {

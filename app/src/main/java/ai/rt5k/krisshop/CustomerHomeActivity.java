@@ -2,6 +2,7 @@ package ai.rt5k.krisshop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -14,9 +15,11 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,6 +32,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import ai.rt5k.krisshop.Util.CountDrawable;
+import ai.rt5k.krisshop.Util.CustomTypefaceSpan;
 
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,10 +73,24 @@ public class CustomerHomeActivity extends AppCompatActivity
         txtName = navigationView.getHeaderView(0).findViewById(R.id.txtName);
         txtMembershipNo = navigationView.getHeaderView(0).findViewById(R.id.txtMembershipNo);
 
-        // TODO: Get actual values from backend
         txtName.setText(m.name);
         txtMembershipNo.setText("Membership No: KF " + m.uid);
 
+        Menu m = navigationView.getMenu();
+        for (int i = 0; i < m.size(); i++) {
+            MenuItem mi = m.getItem(i);
+
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 
@@ -176,6 +194,14 @@ public class CustomerHomeActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawers();
+    }
+
+    private void applyFontToMenuItem(MenuItem mi) {
+        Typeface font = Typeface.createFromAsset(getAssets(), "proxima_nova_regular.ttf");
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+        mNewTitle.setSpan(new CustomTypefaceSpan("" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        //mNewTitle.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, mNewTitle.length(), 0); Use this if you want to center the items
+        mi.setTitle(mNewTitle);
     }
 
     public void setCount(Context context, String count) {
