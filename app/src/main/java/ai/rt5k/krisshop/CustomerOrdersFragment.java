@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,20 +45,9 @@ public class CustomerOrdersFragment extends Fragment {
     MainApplication m;
 
     RecyclerView lstActiveOrders, lstCompletedOrders;
+    TextView txtActiveOrders, txtCompletedOrders;
     OrderAdapter activeOrderAdapter, completedOrderAdapter;
     ArrayList<Order> orders, completedOrders;
-
-    // TODO: Remove dummy data
-    String[] ids = {"#10000", "#00102", "#67219"};
-    String[] names = {"PRODUCT 1", "PRODUCT 2", "PRODUCT 3"};
-    String[] statuses = {"Onboard", "Packed", "Ordered"};
-    float[] prices = {122f, 29f, 33.2f};
-    String[] flightNos = {"SQ101", "SQ444", "SQ691"};
-
-    String[] completednames = {"PRODUCT 1", "PRODUCT 2", "PRODUCT 3", "PRODUCT 4"};
-    String[] completedstatuses = {"Completed", "Completed", "Completed", "Completed"};
-    float[] completedprices = {122f, 29f, 33.2f, 85.0f};
-    String[] completedflightNos = {"SQ101", "SQ444", "SQ691", "SQ71"};
 
     public CustomerOrdersFragment() {
         // Required empty public constructor
@@ -71,6 +61,9 @@ public class CustomerOrdersFragment extends Fragment {
         final View itemView = inflater.inflate(R.layout.fragment_customer_orders, container, false);
 
         m = (MainApplication) getActivity().getApplicationContext();
+
+        txtActiveOrders = itemView.findViewById(R.id.txtActiveOrders);
+        txtCompletedOrders = itemView.findViewById(R.id.txtCompletedOrders);
 
         orders = new ArrayList<>();
         completedOrders = new ArrayList<>();
@@ -113,6 +106,13 @@ public class CustomerOrdersFragment extends Fragment {
                         else {
                             orders.add(order);
                         }
+                    }
+
+                    if(orders.size() == 0) {
+                        txtActiveOrders.setVisibility(View.GONE);
+                    }
+                    if(completedOrders.size() == 0) {
+                        txtCompletedOrders.setVisibility(View.GONE);
                     }
                     lstActiveOrders = itemView.findViewById(R.id.lstActiveOrders);
                     activeOrderAdapter = new OrderAdapter(orders, getActivity());

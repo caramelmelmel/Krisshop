@@ -1,6 +1,8 @@
 package ai.rt5k.krisshop;
 
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -26,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.R;
@@ -57,6 +61,18 @@ public class CustomerHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_customer_home, container, false);
 
+        final ProgressDialog builder = new ProgressDialog(getContext());
+        builder.setTitle("Loading Products");
+        builder.setMessage("Please wait while we load the products");
+        builder.setIndeterminate(true);
+        builder.setCancelable(false);
+        builder.show();
+        (new Timer()).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                builder.dismiss();
+            }
+        }, 2000);
         final MainApplication m = (MainApplication) getActivity().getApplicationContext();
 
         lstBestSellers = itemView.findViewById(R.id.lstBestSellers);

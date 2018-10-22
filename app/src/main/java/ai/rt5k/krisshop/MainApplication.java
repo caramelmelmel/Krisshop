@@ -3,6 +3,7 @@ package ai.rt5k.krisshop;
 import android.app.Application;
 
 import com.android.volley.RequestQueue;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,4 +18,10 @@ public class MainApplication extends Application {
     String sessionId = "";
     String name = "";
     HashMap<Product, Integer> cart = new HashMap<>();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        FirebaseApp.initializeApp(this);
+    }
 }

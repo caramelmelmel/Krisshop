@@ -45,7 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Order order = orders.get(i);
-        viewHolder.txtItemName.setText(order.totalQuantity + " ITEMS");
+        viewHolder.txtItemName.setText(viewHolder.txtItemName.getContext().getResources().getQuantityString(R.plurals.order_items, order.totalQuantity, order.totalQuantity));
         viewHolder.txtPrice.setText("$" + df2.format(order.price));
         viewHolder.txtOrderStatus.setText(order.status.toUpperCase());
         viewHolder.txtFlightNumber.setText(order.flightNumber);
