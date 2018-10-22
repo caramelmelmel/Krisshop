@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +23,7 @@ import ai.rt5k.krisshop.ModelObjects.Order;
 public class OrderDetailsActivity extends AppCompatActivity {
     Order order;
     Button btnConfirmRecieved;
-    TextView txtItemName, txtOrderId, txtAmount, txtFlightNumber;
+    TextView txtOrderId, txtAmount, txtFlightNumber;
     TextView txtOrderCollected;
     RelativeLayout layoutProgressSection;
 
@@ -32,11 +35,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        String s = "KRISSHOP";
+        SpannableString ss1 = new SpannableString(s);
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 1,4, 0); // set size
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 5,8, 0); // set size
+
+        toolbar.setTitle(ss1);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         order = (Order) getIntent().getBundleExtra("orderBundle").getSerializable("order");
 
-        txtItemName = findViewById(R.id.txt_item_name);
         txtOrderId = findViewById(R.id.txt_order_id);
         txtAmount = findViewById(R.id.txt_amount);
         txtFlightNumber = findViewById(R.id.txt_flight_number);
@@ -45,6 +57,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
         layoutProgressSection = findViewById(R.id.layoutProgressSection);
         btnConfirmRecieved = findViewById(R.id.btnConfirmReceived);
 
+        if(!order.status.equals("Arrived")) {
+            btnConfirmRecieved.setEnabled(false);
+        }
         btnConfirmRecieved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,8 +69,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             }
         });
 
-        txtItemName.setText(order.name);
-        txtOrderId.setText(order.id);
+        txtOrderId.setText("#" + order.id.toUpperCase());
         txtAmount.setText("$" + df2.format(order.price));
         txtFlightNumber.setText(order.flightNumber);
     }

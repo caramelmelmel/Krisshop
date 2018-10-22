@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -34,6 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.RecyclerViewAdapters.CartAdapter;
@@ -46,6 +49,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     RecyclerView lstCartItems;
     CartAdapter cartAdapter;
     Button btnCheckout;
+    TextView txtCartEmpty;
 
     static final int[] imageButtons = new int[] {
             R.id.imgColor1,
@@ -104,6 +108,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         lstCartItems = findViewById(R.id.lstCartItems);
         btnCheckout = findViewById(R.id.btnCheckout);
+        txtCartEmpty = findViewById(R.id.txtEmptyCart);
+
+        checkEmpty();
 
         cartAdapter = new CartAdapter(m.cart);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -129,6 +136,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 cartAdapter.products = new ArrayList<>(m.cart.keySet());
                 cartAdapter.notifyDataSetChanged();
                 Snackbar.make(lstCartItems, "Removed " + p.description, Snackbar.LENGTH_SHORT).show();
+                checkEmpty();
             }
         });
 
@@ -198,11 +206,38 @@ public class ShoppingCartActivity extends AppCompatActivity {
                         StringRequest checkoutRequest = new StringRequest(Request.Method.POST, MainApplication.SERVER_URL + "/add_order", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                if(response.equals("SUCCESS")) {
-                                    Snackbar.make(lstCartItems, "Order checked out!", Snackbar.LENGTH_SHORT).show();
-                                    finish();
+                                try {
+                                    final JSONObject responseObject = new JSONObject(response);
+                                    if(responseObject.getBoolean("success")) {
+                                        Snackbar.make(lstCartItems, "Order #" + responseObject.getString("order_id").toUpperCase() + " checked out!", Snackbar.LENGTH_SHORT).show();
+                                        m.cart.clear();
+                                        dialog.dismiss();
+                                        btnCheckout.setEnabled(false);
+                                        (new Timer()).schedule(new TimerTask() {
+                                            @Override
+                                            public void run() {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Intent resultIntent = new Intent();
+                                                        try {
+                                                            resultIntent.putExtra("order_id", responseObject.getString("order_id"));
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        setResult(RESULT_OK, resultIntent);
+                                                        finish();
+                                                    }
+                                                });
+                                            }
+                                        }, 1000);
+                                    }
+                                    else {
+                                        Snackbar.make(lstCartItems, "Checkout failed: " + responseObject.getString("message"), Snackbar.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                                Log.d("ShoppingCartActivity", response);
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -213,8 +248,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                             @Override
                             protected Map<String,String> getParams(){
                                 Map<String,String> params = new HashMap<>();
-                                params.put("uid", m.uid);
-                                params.put("flightNo", "SQ774");
+                                params.put("uid", m.sessionId);
+                                params.put("flight_no", "SQ774");
                                 params.put("products", products.toString());
                                 String selectedColor = "";
                                 for(int i = 0; i < colors.length; i++) {
@@ -235,6 +270,17 @@ public class ShoppingCartActivity extends AppCompatActivity {
         });
     }
 
+    public void checkEmpty() {
+        if(m.cart.size() != 0) {
+            txtCartEmpty.setVisibility(View.GONE);
+            btnCheckout.setVisibility(View.VISIBLE);
+        }
+        else {
+            btnCheckout.setVisibility(View.GONE);
+            txtCartEmpty.setVisibility(View.VISIBLE);
+        }
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

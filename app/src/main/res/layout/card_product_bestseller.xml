@@ -23,13 +23,15 @@
         android:gravity="center_horizontal"
         android:textSize="12sp"
         android:ellipsize="end"
+        android:fontFamily="@font/proxima_nova"
         android:layout_marginTop="4dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:id="@+id/txtPrice"
-        android:textStyle="bold"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="bold|italic"
         android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"/>
 </LinearLayout>

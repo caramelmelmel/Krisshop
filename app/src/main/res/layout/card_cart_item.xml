@@ -39,7 +39,8 @@
                 android:text="Item Name"
                 android:ellipsize="end"
                 android:textSize="@dimen/card_order_text_size"
-                android:textStyle="bold"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:maxLines="2"
                 android:textColor="@color/colorBlack"/>
 
@@ -53,7 +54,8 @@
                 android:layout_marginRight="@dimen/card_order_items_margin"
                 android:text="Price"
                 android:textSize="@dimen/card_order_text_size"
-                android:textStyle="bold"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:textColor="@color/colorGrey"/>
 
             <TextView
@@ -63,11 +65,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/txtCartItemPrice"
-                android:layout_marginTop="-4dp"
+                android:layout_marginTop="-3dp"
                 android:layout_marginRight="@dimen/card_order_items_margin"
                 android:text="QTY"
                 android:textSize="@dimen/card_order_text_size"
-                android:textStyle="bold"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:textColor="@color/colorGrey"/>
 
             <Button
@@ -78,6 +81,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:text="REMOVE"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:textColor="@color/colorAlert"
                 android:background="#00000000"
                 />

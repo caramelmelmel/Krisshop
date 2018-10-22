@@ -42,7 +42,7 @@ public class EmployeeOrderAdapter extends RecyclerView.Adapter<EmployeeOrderAdap
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Order order = orders.get(i);
-        viewHolder.txtOrderName.setText(order.name);
+        viewHolder.txtOrderName.setText("blabla");
         viewHolder.txtOrderID.setText(order.id);
         viewHolder.txtFlightNumber.setText(order.flightNumber);
         viewHolder.position = i;

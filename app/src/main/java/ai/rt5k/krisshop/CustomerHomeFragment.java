@@ -18,6 +18,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,6 +61,9 @@ public class CustomerHomeFragment extends Fragment {
 
         lstBestSellers = itemView.findViewById(R.id.lstBestSellers);
         lstNewProducts = itemView.findViewById(R.id.lstNewProducts);
+
+        ImageLoader loader = ImageLoader.getInstance();
+        loader.init(ImageLoaderConfiguration.createDefault(getContext()));
 
         bestSellers = new ArrayList<>();
 
@@ -124,6 +129,7 @@ public class CustomerHomeFragment extends Fragment {
                     for(int i = 0; i < responseArray.length(); i++) {
                         JSONObject o = responseArray.getJSONObject(i);
                         Product p = new Product();
+                        p.id = o.getInt("id");
                         p.name = o.getString("name");
                         p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
                         p.miles = Integer.parseInt(o.getString("miles").split(" ")[0].replace(",", ""));
@@ -157,6 +163,7 @@ public class CustomerHomeFragment extends Fragment {
                         else {
                             m.cart.put(product, 1);
                         }
+                        ((CustomerHomeActivity) getActivity()).setCount(getContext(), m.cart.size() + "");
                         Snackbar.make(lstNewProducts, "Added to cart", Snackbar.LENGTH_SHORT).show();
                     }
                 });

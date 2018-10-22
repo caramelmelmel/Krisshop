@@ -37,7 +37,12 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/text"
         android:textColor="@color/text"
-        android:textColorHint="@color/textHint"/>
+        android:textColorHint="@color/textHint"
+        android:maxLines="1"
+        android:inputType="text"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="italic"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -49,7 +54,12 @@
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/text"
         android:textColor="@color/text"
-        android:textColorHint="@color/textHint"/>
+        android:textColorHint="@color/textHint"
+        android:maxLines="1"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="italic"
+        android:imeOptions="actionGo"
+        android:inputType="textPassword"/>
 
     <Button
         android:layout_width="match_parent"
@@ -63,6 +73,8 @@
         android:textSize="14sp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="bold|italic"
         android:textColor="@color/text"/>
 
     <TextView
@@ -74,6 +86,7 @@
         android:gravity="center"
         android:textSize="14sp"
         android:textColor="@color/text"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="bold|italic"/>
 
 </LinearLayout>

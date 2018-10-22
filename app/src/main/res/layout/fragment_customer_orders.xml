@@ -12,10 +12,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Active Orders"
+            android:text="ACTIVE ORDERS"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/proxima_nova"
             android:textAppearance="?android:textAppearanceLarge"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -26,10 +27,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Completed Orders"
+            android:text="COMPLETED ORDERS"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/proxima_nova"
             android:textAppearance="?android:textAppearanceLarge"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

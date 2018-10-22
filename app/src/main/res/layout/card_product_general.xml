@@ -24,19 +24,22 @@
         android:gravity="center_horizontal"
         android:textSize="14sp"
         android:ellipsize="end"
+        android:fontFamily="@font/proxima_nova"
         android:layout_marginTop="4dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:id="@+id/txtPrice"
-        android:textStyle="bold"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="bold|italic"
         android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtMiles"
+        android:fontFamily="@font/proxima_nova"
         android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"/>
     <Button
@@ -46,6 +49,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="italic"
         android:background="@drawable/border_button_blue"
         android:foreground="?android:selectableItemBackground"
         android:textColor="@color/colorPrimary"

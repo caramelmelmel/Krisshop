@@ -24,4 +24,7 @@
 
     <!-- Dimensions for shopping cart page -->
     <dimen name="qr_reader_txt_margin">18dp</dimen>
+
+    <!-- Dimensions for shopping cart icon badge -->
+    <dimen name="badge_count_textsize">10sp</dimen>
 </resources>

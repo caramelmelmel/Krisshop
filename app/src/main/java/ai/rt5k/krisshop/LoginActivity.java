@@ -75,7 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject responseObject = new JSONObject(response);
 
                         if(responseObject.getBoolean("success")) {
-                            m.uid = responseObject.getString("session_id");
+                            m.sessionId = responseObject.getString("session_id");
+                            m.uid = edtUsername.getText().toString().substring(1);
+                            m.name = responseObject.getString("name");
                             Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
                             startActivity(customerHomeIntent);
                             finish();

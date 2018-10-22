@@ -71,7 +71,7 @@ public class EmOrderListFragment extends Fragment {
         for(int i = 0; i < names.length; i++) {
             Order o = new Order();
             o.id = ids[i];
-            o.name = names[i];
+            //o.name = names[i];
             o.price = prices[i];
             o.status = statuses[i];
             o.flightNumber = flightNos[i];

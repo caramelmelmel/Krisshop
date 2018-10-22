@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -47,9 +50,8 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
             viewHolder.imgPicture.setImageBitmap(product.image);
         }
         else if(product.imageUrl != null) {
-            Log.d("ProductAdapter", "Starting thread");
-            ImageThread t = new ImageThread(product.imageUrl, viewHolder.imgPicture);
-            t.start();
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(product.imageUrl, viewHolder.imgPicture);
         }
 
         if(clickListener != null) {

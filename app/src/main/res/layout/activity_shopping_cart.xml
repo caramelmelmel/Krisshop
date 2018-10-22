@@ -17,7 +17,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ToolbarTheme"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
 
     </android.support.design.widget.AppBarLayout>
     <ScrollView
@@ -41,6 +42,17 @@
                 android:textColor="@color/colorBlack"
                 android:textAppearance="?android:textAppearanceLarge"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtEmptyCart"
+                android:text="Your shopping cart is empty"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="italic"
+                android:textSize="18dp" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/lstCartItems"
                 android:layout_width="match_parent"
@@ -55,9 +67,11 @@
                 android:layout_height="48dp"
                 android:id="@+id/btnCheckout"
                 android:layout_margin="16dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="CHECKOUT"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:background="@drawable/border_button_orange"
                 android:foreground="?android:selectableItemBackground"
                 android:textColor="@color/text"

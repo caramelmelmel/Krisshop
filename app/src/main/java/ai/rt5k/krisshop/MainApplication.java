@@ -13,6 +13,8 @@ public class MainApplication extends Application {
     public static final String SERVER_URL = "http://10.12.34.153:5000";
     public RequestQueue mainQueue;
 
-    String uid = "K123456789";
+    String uid = "";
+    String sessionId = "";
+    String name = "";
     HashMap<Product, Integer> cart = new HashMap<>();
 }

@@ -1,7 +1,11 @@
 package ai.rt5k.krisshop;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -24,10 +28,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import ai.rt5k.krisshop.Util.CountDrawable;
+
 public class CustomerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int INTENT_SHOPPING_CART = 0;
+
+    MainApplication m;
+
     NavigationView navigationView;
     TextView txtName, txtMembershipNo;
+
+    Menu defaultMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,8 @@ public class CustomerHomeActivity extends AppCompatActivity
         toolbar.setTitle(ss1);
         setSupportActionBar(toolbar);
 
+        m = (MainApplication) getApplicationContext();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -56,8 +70,8 @@ public class CustomerHomeActivity extends AppCompatActivity
         txtMembershipNo = navigationView.getHeaderView(0).findViewById(R.id.txtMembershipNo);
 
         // TODO: Get actual values from backend
-        txtName.setText("Isaac Ashwin");
-        txtMembershipNo.setText("Membership No: KF 8831139803");
+        txtName.setText(m.name);
+        txtMembershipNo.setText("Membership No: KF " + m.uid);
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
@@ -76,6 +90,8 @@ public class CustomerHomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.customer_home_menu, menu);
+        defaultMenu = menu;
+
         return true;
     }
 
@@ -89,10 +105,19 @@ public class CustomerHomeActivity extends AppCompatActivity
         switch (id) {
             case R.id.cart:
                 Intent cartIntent = new Intent(this, ShoppingCartActivity.class);
-                startActivity(cartIntent);
+                startActivityForResult(cartIntent, INTENT_SHOPPING_CART);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == INTENT_SHOPPING_CART) {
+            setCount(CustomerHomeActivity.this, m.cart.size() + "");
+        }
     }
 
     @Override
@@ -104,6 +129,7 @@ public class CustomerHomeActivity extends AppCompatActivity
 
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
+        Log.d("CustomerHomeActivity", menuItem.getItemId() + "|" + R.id.orders);
         Fragment fragment = null;
         Class fragmentClass;
         switch(menuItem.getItemId()) {
@@ -150,5 +176,24 @@ public class CustomerHomeActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawers();
+    }
+
+    public void setCount(Context context, String count) {
+        MenuItem menuItem = defaultMenu.findItem(R.id.cart);
+        LayerDrawable icon = (LayerDrawable) menuItem.getIcon();
+
+        CountDrawable badge;
+
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_group_count);
+        if (reuse != null && reuse instanceof CountDrawable) {
+            badge = (CountDrawable) reuse;
+        } else {
+            badge = new CountDrawable(context);
+        }
+
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_group_count, badge);
     }
 }

@@ -47,7 +47,7 @@ public class EmOrderDetailsActivity extends AppCompatActivity {
             }
         });
 
-        txtItemName.setText(order.name);
+        txtItemName.setText("blabla");
         txtOrderId.setText(order.id);
         txtFlightNumber.setText(order.flightNumber);
     }

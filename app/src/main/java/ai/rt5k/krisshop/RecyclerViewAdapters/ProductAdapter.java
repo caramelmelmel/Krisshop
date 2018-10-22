@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -50,14 +53,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         viewHolder.txtName.setText(product.name);
         viewHolder.txtPrice.setText("$" + df2.format(product.price));
         viewHolder.txtMiles.setText(NumberFormat.getNumberInstance(Locale.US).format(product.miles) + " miles ");
+        viewHolder.imgPicture.setImageDrawable(null);
         viewHolder.position = i;
         if(product.image != null) {
             viewHolder.imgPicture.setImageBitmap(product.image);
         }
         else if(product.imageUrl != null) {
-            Log.d("ProductAdapter", "Starting thread");
-            ImageThread t = new ImageThread(product.imageUrl, viewHolder.imgPicture);
-            t.start();
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(product.imageUrl, viewHolder.imgPicture);
         }
 
         if(clickListener != null) {
