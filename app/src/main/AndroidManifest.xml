@@ -35,7 +35,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ShoppingCartActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EmOrderDetailsActivity"
             android:screenOrientation="portrait" />

@@ -23,6 +23,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     ArrayList<Product> products;
     private static DecimalFormat df2 = new DecimalFormat(".00");
     private ClickListener clickListener;
+    private ClickListener buttonClickListener;
 
     public ProductAdapter(ArrayList<Product> products) {
         this.products = products;
@@ -30,6 +31,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public void setOnClickListener(ClickListener listener) {
         clickListener = listener;
+    }
+    public void setButtonClickListener(ClickListener listener) {
+        buttonClickListener = listener;
     }
 
     @NonNull
@@ -61,6 +65,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 @Override
                 public void onClick(View view) {
                     clickListener.onItemClick(viewHolder.position);
+                }
+            });
+        }
+        if(buttonClickListener != null) {
+            viewHolder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    buttonClickListener.onItemClick(viewHolder.position);
                 }
             });
         }

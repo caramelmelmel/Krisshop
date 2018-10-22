@@ -32,13 +32,15 @@
 
             <TextView
                 android:id="@+id/txtCartItemName"
-                android:layout_width="wrap_content"
+                android:layout_width="144dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/imgCartItem"
                 android:layout_marginTop="@dimen/card_order_items_margin"
                 android:text="Item Name"
+                android:ellipsize="end"
                 android:textSize="@dimen/card_order_text_size"
                 android:textStyle="bold"
+                android:maxLines="2"
                 android:textColor="@color/colorBlack"/>
 
             <TextView
@@ -54,16 +56,19 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorGrey"/>
 
-            <Button
-                android:id="@+id/btnConfirm"
+            <TextView
+                android:id="@+id/txtCartItemQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/btnRemove"
-                android:layout_alignParentBottom="true"
-                android:text="CONFIRM"
-                android:textColor="@color/colorOK"
-                android:background="#00000000"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txtCartItemPrice"
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="@dimen/card_order_items_margin"
+                android:text="QTY"
+                android:textSize="@dimen/card_order_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/colorGrey"/>
 
             <Button
                 android:id="@+id/btnRemove"

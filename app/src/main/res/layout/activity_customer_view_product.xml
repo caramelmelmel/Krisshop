@@ -23,10 +23,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".CustomerViewProductActivity">
+        tools:context=".CustomerViewProductActivity"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            app:fontFamily="sans-serif-light"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="wrap_content"
@@ -36,21 +38,30 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:textAppearanceLarge"
+                android:textSize="24sp"
                 android:id="@+id/txtItemName"
+                app:fontFamily="@font/proxima_nova"
+                android:textColor="@color/colorPrimary"
                 android:layout_margin="8dp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtItemDescription"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="italic"
                 android:layout_margin="8dp"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,6 +70,8 @@
                     android:textColor="@color/colorPrimary"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:layout_weight="1"
+                    android:fontFamily="@font/proxima_nova"
+                    android:textStyle="italic"
                     android:textSize="24sp"
                     />
                 <TextView
@@ -67,6 +80,8 @@
                     android:id="@+id/txtItemMiles"
                     android:layout_weight="1"
                     android:textSize="18sp"
+                    android:fontFamily="@font/proxima_nova"
+                    android:textStyle="italic"
                     android:gravity="right"/>
             </LinearLayout>
             <Button
@@ -76,9 +91,13 @@
                 android:text="Add To Cart"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:textColor="@color/text"
                 android:textSize="18sp"
                 android:foreground="?android:selectableItemBackground"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="italic"
+                android:layout_gravity="bottom"
                 android:background="@drawable/border_button_orange"/>
         </LinearLayout>
     </ScrollView>

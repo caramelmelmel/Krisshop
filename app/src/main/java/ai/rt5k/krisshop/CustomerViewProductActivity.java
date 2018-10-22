@@ -1,10 +1,13 @@
 package ai.rt5k.krisshop;
 
+import android.graphics.Typeface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +26,8 @@ import ai.rt5k.krisshop.Util.ImageThread;
 public class CustomerViewProductActivity extends AppCompatActivity {
     private static DecimalFormat df2 = new DecimalFormat(".00");
 
+    MainApplication m;
+
     ImageView imgItem;
     TextView txtItemName, txtItemDescription, txtItemPrice, txtItemMiles;
     Button btnAddToCart;
@@ -40,8 +45,10 @@ public class CustomerViewProductActivity extends AppCompatActivity {
         ss1.setSpan(new RelativeSizeSpan(0.9f), 5,8, 0); // set size
 
         toolbar.setTitle(ss1);
-        setSupportActionBar(toolbar );
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        m = (MainApplication) getApplicationContext();
         product = (Product) getIntent().getBundleExtra("productBundle").getSerializable("product");
 
         imgItem = findViewById(R.id.imgItem);
@@ -49,8 +56,13 @@ public class CustomerViewProductActivity extends AppCompatActivity {
         txtItemDescription = findViewById(R.id.txtItemDescription);
         txtItemPrice = findViewById(R.id.txtItemPrice);
         txtItemMiles = findViewById(R.id.txtItemMiles);
+        btnAddToCart = findViewById(R.id.btnAddToCart);
 
-        txtItemName.setText(product.name);
+        SpannableString nameSpan = new SpannableString(product.name);
+        nameSpan.setSpan(new StyleSpan(Typeface.BOLD), 0,product.name.indexOf(' '), 0); // set size
+        nameSpan.setSpan(new StyleSpan(Typeface.NORMAL), product.name.indexOf(' '), product.name.length(), 0); // set size
+        txtItemName.setText(nameSpan);
+
         txtItemDescription.setText(product.description);
         txtItemPrice.setText("$" + df2.format(product.price));
         txtItemMiles.setText(NumberFormat.getNumberInstance(Locale.US).format(product.miles) + " miles ");
@@ -59,10 +71,22 @@ public class CustomerViewProductActivity extends AppCompatActivity {
             imgItem.setImageBitmap(product.image);
         }
         else if(product.imageUrl != null) {
-            Log.d("ProductAdapter", "Starting thread");
             ImageThread t = new ImageThread(product.imageUrl, imgItem);
             t.start();
         }
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(m.cart.containsKey(product)) {
+                    m.cart.put(product, m.cart.get(product) + 1);
+                }
+                else {
+                    m.cart.put(product, 1);
+                }
+                Snackbar.make(btnAddToCart, "Added to cart", Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

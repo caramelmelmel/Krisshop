@@ -1,47 +1,238 @@
 package ai.rt5k.krisshop;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.RecyclerViewAdapters.CartAdapter;
+import ai.rt5k.krisshop.RecyclerViewAdapters.ClickListener;
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class ShoppingCartActivity extends AppCompatActivity {
+    MainApplication m;
 
     RecyclerView lstCartItems;
     CartAdapter cartAdapter;
-    ArrayList<Product> cartItems;
+    Button btnCheckout;
 
-    // TODO: Remove dummy data
-    String[] names = {"PRODUCT 1", "PRODUCT 2", "PRODUCT 3"};
-    float[] prices = {122f, 29f, 33.2f};
+    static final int[] imageButtons = new int[] {
+            R.id.imgColor1,
+            R.id.imgColor2,
+            R.id.imgColor3,
+            R.id.imgColor4,
+            R.id.imgColor5,
+            R.id.imgColor6,
+            R.id.imgColor7,
+            R.id.imgColor8
+    };
+
+    static final String[] colors = new String[] {
+            "#FF8A80",
+            "#91BAFF",
+            "#FFD180",
+            "#A7FFEB",
+            "#B389FF",
+            "#FFFF8D",
+            "#CFFF97",
+            "#F8BBD0"
+    };
+
+    boolean[] selectedImage = new boolean[] {
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+    };
+
+    GradientDrawable[] selected = new GradientDrawable[8];
+    GradientDrawable[] unselected = new GradientDrawable[8];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        String s = "KRISSHOP";
+        SpannableString ss1 = new SpannableString(s);
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 1,4, 0); // set size
+        ss1.setSpan(new RelativeSizeSpan(0.9f), 5,8, 0); // set size
+
+        toolbar.setTitle(ss1);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        lstCartItems = findViewById(R.id.lstCartItems);
-        cartItems = new ArrayList<>();
+        m = (MainApplication) getApplicationContext();
 
-        // TODO: Get actual user cart contents
-        for (int i = 0; i < names.length; i++) {
-            Product p = new Product(names[i], prices[i]);
-            cartItems.add(p);
-        }
-        cartAdapter = new CartAdapter(cartItems);
+        lstCartItems = findViewById(R.id.lstCartItems);
+        btnCheckout = findViewById(R.id.btnCheckout);
+
+        cartAdapter = new CartAdapter(m.cart);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         lstCartItems.setLayoutManager(mLayoutManager);
         lstCartItems.setItemAnimator(new DefaultItemAnimator());
         lstCartItems.setAdapter(cartAdapter);
+
+        cartAdapter.setOnClickListener(new ClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent viewProductIntent = new Intent(ShoppingCartActivity.this, CustomerViewProductActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("product", cartAdapter.products.get(position));
+                viewProductIntent.putExtra("productBundle", b);
+                startActivity(viewProductIntent);
+            }
+        });
+        cartAdapter.setButtonClickListener(new ClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Product p = cartAdapter.products.get(position);
+                m.cart.remove(p);
+                cartAdapter.products = new ArrayList<>(m.cart.keySet());
+                cartAdapter.notifyDataSetChanged();
+                Snackbar.make(lstCartItems, "Removed " + p.description, Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        for(int i = 0; i < imageButtons.length; i++) {
+            unselected[i] = new GradientDrawable();
+            unselected[i].setShape(GradientDrawable.OVAL);
+            unselected[i].setColor(Color.parseColor(colors[i]));
+            unselected[i].setSize(144, 144);
+
+            selected[i] = new GradientDrawable();
+            selected[i].setShape(GradientDrawable.OVAL);
+            selected[i].setColor(Color.parseColor(colors[i]));
+            selected[i].setSize(159, 159);
+            selected[i].setStroke(8, Color.parseColor("#999999"));//getResources().getColor(R.color.colorPrimary));
+        }
+
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(ShoppingCartActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_checkout);
+
+                SegmentedGroup btnDelivery = dialog.findViewById(R.id.btnDelivery);
+                btnDelivery.setTintColor(getResources().getColor(R.color.colorPrimary));
+
+                for(int i = 0; i < imageButtons.length; i++) {
+                    final ImageButton img = dialog.findViewById(imageButtons[i]);
+                    img.setBackground(unselected[i]);
+                    img.setTag(i);
+                    img.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            img.startAnimation(AnimationUtils.loadAnimation(getBaseContext(), android.R.anim.fade_in));
+                            for(int i = 0; i < imageButtons.length; i++) {
+                                selectedImage[i] = false;
+                                final ImageButton img = dialog.findViewById(imageButtons[i]);
+                                img.setBackground(unselected[i]);
+                            }
+                            selectedImage[(Integer) v.getTag()] = true;
+                            img.setBackground(selected[(Integer) v.getTag()]);
+                        }
+                    });
+                }
+                dialog.show();
+
+                dialog.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Iterator<Map.Entry<Product, Integer>> it = m.cart.entrySet().iterator();
+
+                        final JSONArray products = new JSONArray();
+                        while(it.hasNext()) {
+                            Map.Entry<Product, Integer> entry = it.next();
+                            Product p = entry.getKey();
+                            int quantity = entry.getValue();
+
+                            JSONObject product = new JSONObject();
+                            try {
+                                product.put("id", p.id);
+                                product.put("quantity", quantity);
+                                products.put(product);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        StringRequest checkoutRequest = new StringRequest(Request.Method.POST, MainApplication.SERVER_URL + "/add_order", new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if(response.equals("SUCCESS")) {
+                                    Snackbar.make(lstCartItems, "Order checked out!", Snackbar.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                Log.d("ShoppingCartActivity", response);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("LoginActivity", error.toString());
+                            }
+                        }){
+                            @Override
+                            protected Map<String,String> getParams(){
+                                Map<String,String> params = new HashMap<>();
+                                params.put("uid", m.uid);
+                                params.put("flightNo", "SQ774");
+                                params.put("products", products.toString());
+                                String selectedColor = "";
+                                for(int i = 0; i < colors.length; i++) {
+                                    if(selectedImage[i]) {
+                                        selectedColor = colors[i];
+                                        break;
+                                    }
+                                }
+                                params.put("color", selectedColor);
+                                return params;
+                            }
+                        };
+
+                        m.mainQueue.add(checkoutRequest);
+                    }
+                });
+            }
+        });
     }
 
     @Override

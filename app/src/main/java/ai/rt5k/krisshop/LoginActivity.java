@@ -2,6 +2,7 @@ package ai.rt5k.krisshop;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -19,6 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,21 +62,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
             // TODO: Remove this block
-            Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-            startActivity(customerHomeIntent);
+            //Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+            //startActivity(customerHomeIntent);
             //Intent employeeHomeIntent = new Intent(LoginActivity.this, EmHomeActivity.class);
             //startActivity(employeeHomeIntent);
-            finish();
+            //finish();
 
             StringRequest loginRequest = new StringRequest(Request.Method.POST,MainApplication.SERVER_URL + "/login", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    if(response.equals("SUCCESS")) {
-                        Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-                        startActivity(customerHomeIntent);
-                        finish();
+                    try {
+                        JSONObject responseObject = new JSONObject(response);
+
+                        if(responseObject.getBoolean("success")) {
+                            m.uid = responseObject.getString("session_id");
+                            Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                            startActivity(customerHomeIntent);
+                            finish();
+                        }
+                        else {
+                            Snackbar.make(btnLogin, "Login failed: " + responseObject.getString("message"), Snackbar.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    Log.e("LoginActivity", response);
                 }
             }, new Response.ErrorListener() {
                 @Override

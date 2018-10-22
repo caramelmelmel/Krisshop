@@ -3,6 +3,7 @@ package ai.rt5k.krisshop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -54,7 +55,7 @@ public class CustomerHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View itemView = inflater.inflate(R.layout.fragment_customer_home, container, false);
 
-        MainApplication m = (MainApplication) getActivity().getApplicationContext();
+        final MainApplication m = (MainApplication) getActivity().getApplicationContext();
 
         lstBestSellers = itemView.findViewById(R.id.lstBestSellers);
         lstNewProducts = itemView.findViewById(R.id.lstNewProducts);
@@ -144,6 +145,19 @@ public class CustomerHomeFragment extends Fragment {
                         b.putSerializable("product", products.get(position));
                         viewProductIntent.putExtra("productBundle", b);
                         startActivity(viewProductIntent);
+                    }
+                });
+                newProductAdapter.setButtonClickListener(new ClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Product product = products.get(position);
+                        if(m.cart.containsKey(product)) {
+                            m.cart.put(product, m.cart.get(product) + 1);
+                        }
+                        else {
+                            m.cart.put(product, 1);
+                        }
+                        Snackbar.make(lstNewProducts, "Added to cart", Snackbar.LENGTH_SHORT).show();
                     }
                 });
 

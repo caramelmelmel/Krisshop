@@ -19,4 +19,8 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
     }
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

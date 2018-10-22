@@ -1,24 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ShoppingCartActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Shopping Cart"
-        android:textColor="@color/colorBlack"
-        android:textAppearance="?android:textAppearanceLarge"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lstCartItems"
+    android:orientation="vertical">
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".ShoppingCartActivity">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:text="SHOPPING CART"
+                android:fontFamily="@font/proxima_nova"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="?android:textAppearanceLarge"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lstCartItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:id="@+id/btnCheckout"
+                android:layout_margin="16dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="CHECKOUT"
+                android:background="@drawable/border_button_orange"
+                android:foreground="?android:selectableItemBackground"
+                android:textColor="@color/text"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
