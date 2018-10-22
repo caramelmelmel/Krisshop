@@ -27,7 +27,6 @@ public class ImageThread extends Thread {
                 @Override
                 public void run() {
                     view.setImageBitmap(bmp);
-                    Log.d("ImageThread", "Image loaded from " + url);
                 }
             });
         } catch (MalformedURLException e) {

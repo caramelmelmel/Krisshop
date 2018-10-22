@@ -46,7 +46,11 @@
         <activity
             android:name=".EmCameraActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EmOrdersActivity"
+        <activity
+            android:name=".EmOrdersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CustomerViewProductActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

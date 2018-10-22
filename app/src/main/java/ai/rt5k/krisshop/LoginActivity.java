@@ -58,9 +58,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
             // TODO: Remove this block
-            //Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-            Intent employeeHomeIntent = new Intent(LoginActivity.this, EmHomeActivity.class);
-            startActivity(employeeHomeIntent);
+            Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+            startActivity(customerHomeIntent);
+            //Intent employeeHomeIntent = new Intent(LoginActivity.this, EmHomeActivity.class);
+            //startActivity(employeeHomeIntent);
             finish();
 
             StringRequest loginRequest = new StringRequest(Request.Method.POST,MainApplication.SERVER_URL + "/login", new Response.Listener<String>() {

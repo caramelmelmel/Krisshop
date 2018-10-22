@@ -61,14 +61,51 @@ public class CustomerHomeFragment extends Fragment {
 
         bestSellers = new ArrayList<>();
 
-        // TODO: Get actual products from backend
-        for(int i = 0; i < names.length; i++) {
-            Product p = new Product();
-            p.name = names[i];
-            p.price = prices[i];
+        StringRequest bestsellerRequest = new StringRequest(Request.Method.GET, MainApplication.SERVER_URL + "/bestsellers", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray responseArray = new JSONArray(response);
+                    for(int i = 0; i < responseArray.length(); i++) {
+                        JSONObject o = responseArray.getJSONObject(i);
+                        Product p = new Product();
+                        p.name = o.getString("name");
+                        p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
+                        p.miles = Integer.parseInt(o.getString("miles").split(" ")[0].replace(",", ""));
+                        p.imageUrl = o.getString("image");
+                        p.description = o.getString("content");
+                        bestSellers.add(p);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-            bestSellers.add(p);
-        }
+                bestSellerAdapter = new BestSellerAdapter(bestSellers);
+                bestSellerAdapter.setOnClickListener(new ClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Log.d("CustomerHomeActivity", position + "");
+                        Intent viewProductIntent = new Intent(getContext(), CustomerViewProductActivity.class);
+                        Bundle b = new Bundle();
+                        b.putSerializable("product", bestSellers.get(position));
+                        viewProductIntent.putExtra("productBundle", b);
+                        startActivity(viewProductIntent);
+                    }
+                });
+
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                lstBestSellers.setLayoutManager(mLayoutManager);
+                lstBestSellers.setItemAnimator(new DefaultItemAnimator());
+                lstBestSellers.setAdapter(bestSellerAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        m.mainQueue.add(bestsellerRequest);
 
         bestSellerAdapter = new BestSellerAdapter(bestSellers);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -79,7 +116,7 @@ public class CustomerHomeFragment extends Fragment {
         StringRequest productRequest = new StringRequest(Request.Method.GET, MainApplication.SERVER_URL + "/products", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                ArrayList<Product> products = new ArrayList<>();
+                final ArrayList<Product> products = new ArrayList<>();
 
                 try {
                     JSONArray responseArray = new JSONArray(response);
@@ -90,6 +127,7 @@ public class CustomerHomeFragment extends Fragment {
                         p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
                         p.miles = Integer.parseInt(o.getString("miles").split(" ")[0].replace(",", ""));
                         p.imageUrl = o.getString("image");
+                        p.description = o.getString("content");
                         products.add(p);
                     }
                 } catch (JSONException e) {
@@ -101,7 +139,11 @@ public class CustomerHomeFragment extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         // TODO: Load product view activity
-                        Log.d("CustomerHomeActivity", position + "");
+                        Intent viewProductIntent = new Intent(getContext(), CustomerViewProductActivity.class);
+                        Bundle b = new Bundle();
+                        b.putSerializable("product", products.get(position));
+                        viewProductIntent.putExtra("productBundle", b);
+                        startActivity(viewProductIntent);
                     }
                 });
 
@@ -122,5 +164,4 @@ public class CustomerHomeFragment extends Fragment {
 
         return itemView;
     }
-
 }

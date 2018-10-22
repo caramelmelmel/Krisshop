@@ -9,6 +9,7 @@ public class Product implements Serializable {
     public String name;
     public float price;
     public int miles;
+    public String description;
     public Bitmap image;
     public String imageUrl;
 

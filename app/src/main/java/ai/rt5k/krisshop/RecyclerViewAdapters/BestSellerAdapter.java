@@ -2,6 +2,7 @@ package ai.rt5k.krisshop.RecyclerViewAdapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +14,20 @@ import java.util.ArrayList;
 
 import ai.rt5k.krisshop.ModelObjects.Product;
 import ai.rt5k.krisshop.R;
+import ai.rt5k.krisshop.Util.ImageThread;
 
 public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.ViewHolder> {
     ArrayList<Product> products;
     private static DecimalFormat df2 = new DecimalFormat(".00");
+    private ClickListener clickListener;
 
     public BestSellerAdapter(ArrayList<Product> products) {
         this.products = products;
     }
 
+    public void setOnClickListener(ClickListener listener) {
+        clickListener = listener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -31,12 +37,28 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Product product = products.get(i);
         viewHolder.txtName.setText(product.name);
         viewHolder.txtPrice.setText("$" + df2.format(product.price));
+        viewHolder.position = i;
+
         if(product.image != null) {
             viewHolder.imgPicture.setImageBitmap(product.image);
+        }
+        else if(product.imageUrl != null) {
+            Log.d("ProductAdapter", "Starting thread");
+            ImageThread t = new ImageThread(product.imageUrl, viewHolder.imgPicture);
+            t.start();
+        }
+
+        if(clickListener != null) {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickListener.onItemClick(viewHolder.position);
+                }
+            });
         }
     }
 
@@ -48,6 +70,7 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtName, txtPrice;
         public ImageView imgPicture;
+        public int position;
 
         public ViewHolder(View view) {
             super(view);
