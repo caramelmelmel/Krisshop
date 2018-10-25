@@ -63,7 +63,6 @@ public class RateDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 // TODO: save rating
-                dismiss();
                 Activity parent = getActivity();
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("qrcode", qrcodeText);

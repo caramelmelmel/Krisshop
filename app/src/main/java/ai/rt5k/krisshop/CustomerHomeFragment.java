@@ -4,6 +4,8 @@ package ai.rt5k.krisshop;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -66,6 +69,11 @@ public class CustomerHomeFragment extends Fragment {
         builder.setMessage("Please wait while we load the products");
         builder.setIndeterminate(true);
         builder.setCancelable(false);
+
+        Drawable drawable = new ProgressBar(getContext()).getIndeterminateDrawable().mutate();
+        drawable.setColorFilter(getContext().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        builder.setIndeterminateDrawable(drawable);
+
         builder.show();
         (new Timer()).schedule(new TimerTask() {
             @Override

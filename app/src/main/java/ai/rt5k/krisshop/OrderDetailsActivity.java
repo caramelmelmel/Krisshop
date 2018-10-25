@@ -2,6 +2,7 @@ package ai.rt5k.krisshop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,6 +29,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView txtOrderId, txtAmount, txtFlightNumber;
     TextView txtOrderCollected;
     RelativeLayout layoutProgressSection;
+    ProgressBar prgStatus;
+    ImageView checkpointPacked, checkpointOnboard, checkpointArrived, imgPhoto;
 
     private static final int customerQRCodeRequest = 1;
     private static final String TAG = "OrderDetailsActivity";
@@ -72,6 +77,37 @@ public class OrderDetailsActivity extends AppCompatActivity {
         txtOrderId.setText("#" + order.id.toUpperCase());
         txtAmount.setText("$" + df2.format(order.price));
         txtFlightNumber.setText(order.flightNumber);
+
+        prgStatus = findViewById(R.id.prgStatus);
+        checkpointPacked = findViewById(R.id.checkpointPacked);
+        checkpointOnboard = findViewById(R.id.checkpointOnboard);
+        checkpointArrived = findViewById(R.id.checkpointArrived);
+        imgPhoto = findViewById(R.id.imgPhoto);
+
+        setStatus();
+    }
+
+    public void setStatus() {
+        switch (order.status) {
+            case "Arrived":
+                prgStatus.setProgress(Math.max(getResources().getInteger(R.integer.progress_arrived), prgStatus.getProgress()));
+                checkpointArrived.setImageDrawable(getResources().getDrawable(R.drawable.checkpoint_active));
+            case "Onboard":
+                prgStatus.setProgress(Math.max(getResources().getInteger(R.integer.progress_onboard), prgStatus.getProgress()));
+                checkpointOnboard.setImageDrawable(getResources().getDrawable(R.drawable.checkpoint_active));
+            case "Packed":
+                prgStatus.setProgress(Math.max(getResources().getInteger(R.integer.progress_packed), prgStatus.getProgress()));
+                checkpointPacked.setImageDrawable(getResources().getDrawable(R.drawable.checkpoint_active));
+        }
+
+        if(!order.status.equals("Arrived")) {
+            btnConfirmRecieved.setEnabled(false);
+        }
+
+        if(order.status.equals("Arrived")) {
+            imgPhoto.setVisibility(View.VISIBLE);
+            btnConfirmRecieved.setEnabled(true);
+        }
     }
 
     @Override

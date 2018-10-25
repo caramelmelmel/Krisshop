@@ -9,7 +9,9 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/qr_reader_txt_margin"
-        android:text="Take 3 photos of the package"
+        android:text="Take a photo of the package"
+        android:fontFamily="@font/proxima_nova"
+        android:textStyle="italic"
         />
 
     <SurfaceView

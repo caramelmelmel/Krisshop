@@ -11,11 +11,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import ai.rt5k.krisshop.ModelObjects.Order;
+
 public class EmOrdersActivity extends AppCompatActivity {
+    public ArrayList<Order> orders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        orders = (ArrayList<Order>) getIntent().getSerializableExtra("orders");
+
         getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
         setContentView(R.layout.activity_em_orders);
 
@@ -45,6 +53,7 @@ public class EmOrdersActivity extends AppCompatActivity {
 
     class PagerAdapter extends FragmentStatePagerAdapter {
         private final String[] titles = {"Pending", "Packed", "Onboard"};
+        private final String[] filters = {"Ordered", "Packed", "Onboard"};
 
         public PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -52,7 +61,7 @@ public class EmOrdersActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return EmOrderListFragment.newInstance(titles[position]);
+            return EmOrderListFragment.newInstance(filters[position]);
         }
 
         @Override

@@ -12,4 +12,5 @@ public class Order implements Serializable {
     public String flightNumber;
     public String status;
     public int totalQuantity;
+    public String color;
 }

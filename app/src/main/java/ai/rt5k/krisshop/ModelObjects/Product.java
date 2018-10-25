@@ -12,6 +12,7 @@ public class Product implements Serializable {
     public String description;
     public Bitmap image;
     public String imageUrl;
+    public int quantity;
 
     public Product() {}
 

@@ -67,13 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Remove this block
-                //Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-                //startActivity(customerHomeIntent);
-                //Intent employeeHomeIntent = new Intent(LoginActivity.this, EmHomeActivity.class);
-                //startActivity(employeeHomeIntent);
-                //finish();
-
                 FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -89,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                         StringRequest loginRequest = new StringRequest(Request.Method.POST,MainApplication.SERVER_URL + "/login", new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+                                Log.d("LoginActvity", response);
                                 try {
                                     JSONObject responseObject = new JSONObject(response);
 
@@ -96,9 +90,16 @@ public class LoginActivity extends AppCompatActivity {
                                         m.sessionId = responseObject.getString("session_id");
                                         m.uid = edtUsername.getText().toString().substring(1);
                                         m.name = responseObject.getString("name");
-                                        Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
-                                        startActivity(customerHomeIntent);
-                                        finish();
+                                        if(responseObject.getString("auth").equals("user")) {
+                                            Intent customerHomeIntent = new Intent(LoginActivity.this, CustomerHomeActivity.class);
+                                            startActivity(customerHomeIntent);
+                                            finish();
+                                        }
+                                        else {
+                                            Intent employeeHomeIntent = new Intent(LoginActivity.this, EmHomeActivity.class);
+                                            startActivity(employeeHomeIntent);
+                                            finish();
+                                        }
                                     }
                                     else {
                                         Snackbar.make(btnLogin, "Login failed: " + responseObject.getString("message"), Snackbar.LENGTH_SHORT).show();

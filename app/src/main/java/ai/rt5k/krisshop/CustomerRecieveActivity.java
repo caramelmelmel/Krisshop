@@ -27,6 +27,8 @@ public class CustomerRecieveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getSupportActionBar().setTitle("Confirm Receipt");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Check for camera permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {

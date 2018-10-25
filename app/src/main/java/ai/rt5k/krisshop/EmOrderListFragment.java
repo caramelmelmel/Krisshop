@@ -32,13 +32,7 @@ public class EmOrderListFragment extends Fragment {
     private static final int ORDER_DETAIL_INTENT = 0;
 
     private String filter;
-    
-    String[] ids = {"#10000", "#00102", "#67219"};
-    String[] names = {"PRODUCT 1", "PRODUCT 2", "PRODUCT 3"};
-    String[] statuses = {"Onboard", "Packed", "Ordered"};
-    float[] prices = {122f, 29f, 33.2f};
-    String[] flightNos = {"SQ101", "SQ444", "SQ691"};
-    
+
     public EmOrderListFragment() {
         // Required empty public constructor
     }
@@ -67,17 +61,12 @@ public class EmOrderListFragment extends Fragment {
 
         final ArrayList<Order> orders = new ArrayList<>();
 
-        // TODO: get actual data from backend
-        for(int i = 0; i < names.length; i++) {
-            Order o = new Order();
-            o.id = ids[i];
-            //o.name = names[i];
-            o.price = prices[i];
-            o.status = statuses[i];
-            o.flightNumber = flightNos[i];
-            orders.add(o);
+        for(Order o : ((EmOrdersActivity) getActivity()).orders) {
+            if(o.status.equals(filter)) {
+                orders.add(o);
+            }
         }
-        
+
         RecyclerView lstOrders = rootView.findViewById(R.id.lstOrders);
         EmployeeOrderAdapter orderAdapter = new EmployeeOrderAdapter(orders, getActivity());
         orderAdapter.setOnClickListener(new ClickListener() {

@@ -189,6 +189,7 @@
                         android:layout_centerVertical="true"
                         android:progress="12"
                         android:max="100"
+                        android:id="@+id/prgStatus"
                         android:progressBackgroundTint="@color/colorGrey"
                         android:progressTint="@color/colorAlert"
                         style="?android:attr/progressBarStyleHorizontal"
@@ -264,7 +265,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
-                            android:tint="@color/colorLightGrey"
                             />
 
                         <ImageView
@@ -273,7 +273,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
-                            android:tint="@color/colorLightGrey"
                             />
 
                         <ImageView
@@ -282,7 +281,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/checkpoint_inactive"
-                            android:tint="@color/colorLightGrey"
                             />
 
                     </LinearLayout>
@@ -290,12 +288,13 @@
 
             </LinearLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pagerImageScroller"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:visibility="gone">
-            </android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"
+                android:id="@+id/imgPhoto"
+                android:src="@drawable/pack"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btnConfirmReceived"
@@ -306,7 +305,8 @@
                 android:elevation="0dp"
                 android:padding="@dimen/card_order_padding"
                 android:text="CONFIRM RECEIVED"
-                android:textStyle="bold"
+                android:fontFamily="@font/proxima_nova"
+                android:textStyle="bold|italic"
                 android:textColor="@color/text"
                 android:background="@drawable/border_button_orange"/>
 
