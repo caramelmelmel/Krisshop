@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Delivery: "
             android:fontFamily="@font/proxima_nova"
-            android:textStyle="italic"
+            android:textStyle="normal"
             android:textSize="18sp"
             android:layout_gravity="center_vertical"/>
         <info.hoang8f.android.segmented.SegmentedGroup
@@ -46,7 +46,7 @@
                 android:text="In-Flight"
                 style="@style/RadioButton"
                 android:fontFamily="@font/proxima_nova"
-                android:textStyle="italic" />
+                android:textStyle="normal" />
 
             <RadioButton
                 android:id="@+id/btnHome"
@@ -55,7 +55,7 @@
                 android:text="Home"
                 style="@style/RadioButton"
                 android:fontFamily="@font/proxima_nova"
-                android:textStyle="italic" />
+                android:textStyle="normal" />
         </info.hoang8f.android.segmented.SegmentedGroup>
     </LinearLayout>
 
@@ -65,9 +65,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="Favourite Color: "
+        android:text="Package Color: "
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         android:textSize="18sp"
         android:layout_gravity="center_vertical"/>
 

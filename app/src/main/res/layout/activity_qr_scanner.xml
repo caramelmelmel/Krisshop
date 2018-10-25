@@ -11,7 +11,7 @@
         android:layout_margin="@dimen/qr_reader_txt_margin"
         android:text="Scan QR Code on your package to sign package"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         />
 
     <com.dlazaro66.qrcodereaderview.QRCodeReaderView
@@ -31,6 +31,6 @@
         android:textColor="@color/text"
         android:backgroundTint="@color/colorAlert"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic|bold"/>
+        android:textStyle="bold"/>
 
 </RelativeLayout>

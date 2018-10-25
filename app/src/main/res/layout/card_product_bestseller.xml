@@ -31,7 +31,7 @@
         android:layout_marginTop="8dp"
         android:id="@+id/txtPrice"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"/>
 </LinearLayout>

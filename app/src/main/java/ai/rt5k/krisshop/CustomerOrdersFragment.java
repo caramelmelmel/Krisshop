@@ -37,11 +37,15 @@ import ai.rt5k.krisshop.RecyclerViewAdapters.BestSellerAdapter;
 import ai.rt5k.krisshop.RecyclerViewAdapters.ClickListener;
 import ai.rt5k.krisshop.RecyclerViewAdapters.OrderAdapter;
 
+import static android.app.Activity.RESULT_OK;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CustomerOrdersFragment extends Fragment {
+    private static final int ORDER_DETAILS_INTENT = 0;
+
     MainApplication m;
 
     RecyclerView lstActiveOrders, lstCompletedOrders;
@@ -64,7 +68,15 @@ public class CustomerOrdersFragment extends Fragment {
 
         txtActiveOrders = itemView.findViewById(R.id.txtActiveOrders);
         txtCompletedOrders = itemView.findViewById(R.id.txtCompletedOrders);
+        lstActiveOrders = itemView.findViewById(R.id.lstActiveOrders);
+        lstCompletedOrders = itemView.findViewById(R.id.lstCompletedOrders);
 
+        loadOrders();
+
+        return itemView;
+    }
+
+    public void loadOrders() {
         orders = new ArrayList<>();
         completedOrders = new ArrayList<>();
 
@@ -76,6 +88,8 @@ public class CustomerOrdersFragment extends Fragment {
                     for(int i = 0; i < responseArray.length(); i++) {
                         Order order = new Order();
                         JSONObject orderObject = responseArray.getJSONObject(i);
+
+                        if(orderObject.getString("status").equals("Cancelled")) continue;
 
                         order.id = orderObject.getString("id");
                         order.status = orderObject.getString("status");
@@ -114,7 +128,6 @@ public class CustomerOrdersFragment extends Fragment {
                     if(completedOrders.size() == 0) {
                         txtCompletedOrders.setVisibility(View.GONE);
                     }
-                    lstActiveOrders = itemView.findViewById(R.id.lstActiveOrders);
                     activeOrderAdapter = new OrderAdapter(orders, getActivity());
                     activeOrderAdapter.setOnClickListener(new ClickListener() {
                         @Override
@@ -124,7 +137,7 @@ public class CustomerOrdersFragment extends Fragment {
                             Bundle b = new Bundle();
                             b.putSerializable("order", orders.get(position));
                             orderDetailsIntent.putExtra("orderBundle", b);
-                            startActivity(orderDetailsIntent);
+                            startActivityForResult(orderDetailsIntent, ORDER_DETAILS_INTENT);
                         }
                     });
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -133,7 +146,6 @@ public class CustomerOrdersFragment extends Fragment {
                     lstActiveOrders.setAdapter(activeOrderAdapter);
                     lstActiveOrders.setNestedScrollingEnabled(false);
 
-                    lstCompletedOrders = itemView.findViewById(R.id.lstCompletedOrders);
                     completedOrderAdapter = new OrderAdapter(completedOrders, getActivity());
                     completedOrderAdapter.setOnClickListener(new ClickListener() {
                         @Override
@@ -143,7 +155,7 @@ public class CustomerOrdersFragment extends Fragment {
                             Bundle b = new Bundle();
                             b.putSerializable("order", completedOrders.get(position));
                             orderDetailsIntent.putExtra("orderBundle", b);
-                            startActivity(orderDetailsIntent);
+                            startActivityForResult(orderDetailsIntent, ORDER_DETAILS_INTENT);
                         }
                     });
                     RecyclerView.LayoutManager completedLayoutManager = new LinearLayoutManager(getActivity());
@@ -170,8 +182,13 @@ public class CustomerOrdersFragment extends Fragment {
         };
 
         m.mainQueue.add(orderRequest);
-
-        return itemView;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == ORDER_DETAILS_INTENT && resultCode == RESULT_OK) {
+            loadOrders();
+        }
+    }
 }

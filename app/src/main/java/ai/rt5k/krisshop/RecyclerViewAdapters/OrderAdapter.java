@@ -53,6 +53,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
         int statusColor;
         switch (order.status) {
+            case "Arrived":
             case "Completed":
                 statusColor = context.getResources().getColor(R.color.colorGrey);
                 viewHolder.viwStatus.setActivated(false);

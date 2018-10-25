@@ -1,10 +1,12 @@
 package ai.rt5k.krisshop;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,17 +127,20 @@ public class EmOrderDetailsActivity extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            TextView itemView;
+            View itemView;
 
             if(view != null) {
-                itemView = (TextView) view;
+                itemView = view;
             }
             else {
-                itemView = new TextView(viewGroup.getContext());
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                itemView = inflater.inflate(R.layout.list_item_products, viewGroup, false);
             }
 
-            itemView.setText(order.products.get(i).name + " x" + order.products.get(i).quantity);
-            itemView.setTypeface(Typeface.createFromAsset(getAssets(), "proxima_nova_regular.ttf"));
+            ((TextView) itemView.findViewById(R.id.txtLineItem)).setText((i + 1) + ".");
+            ((TextView) itemView.findViewById(R.id.txtProductName)).setText(order.products.get(i).name.toUpperCase() + " (PRODUCT ID: #" + order.products.get(i).id + " )");
+            ((TextView) itemView.findViewById(R.id.txtQuantity)).setText("\u00d7 " + order.products.get(i).quantity);
+
             return itemView;
         }
     }

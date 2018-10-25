@@ -17,11 +17,11 @@
         android:title="Home Purchases" />
     <item
         android:id="@+id/official_stores"
-        android:icon="@drawable/ic_menu_manage"
+        android:icon="@drawable/ic_menu_store"
         android:title="Official Stores" />
     <item
         android:id="@+id/concept_stores"
-        android:icon="@drawable/ic_menu_manage"
+        android:icon="@drawable/ic_menu_concept_store"
         android:title="Concept Stores" />
 
     <item android:title="Account">

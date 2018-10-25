@@ -11,7 +11,7 @@ android:layout_height="match_parent">
         android:layout_margin="@dimen/qr_reader_txt_margin"
         android:text="Take a photo of the package"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         />
 
     <SurfaceView

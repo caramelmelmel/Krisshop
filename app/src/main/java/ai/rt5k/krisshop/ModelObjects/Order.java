@@ -13,4 +13,6 @@ public class Order implements Serializable {
     public String status;
     public int totalQuantity;
     public String color;
+    public String photoURL;
+    public String orderedOn;
 }

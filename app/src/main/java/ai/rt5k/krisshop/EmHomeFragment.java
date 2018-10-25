@@ -82,6 +82,7 @@ public class EmHomeFragment extends Fragment {
                                 order.flightNumber = orderObject.getString("flight_no");
                                 order.color = orderObject.getString("color");
                                 order.totalQuantity = 0;
+                                order.orderedOn = orderObject.getString("created");
 
                                 order.products = new ArrayList<>();
 

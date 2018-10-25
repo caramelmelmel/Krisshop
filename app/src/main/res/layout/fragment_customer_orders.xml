@@ -17,7 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/proxima_nova"
+            android:fontFamily="@font/proxima_nova_thin"
             android:textAppearance="?android:textAppearanceLarge"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/proxima_nova"
+            android:fontFamily="@font/proxima_nova_thin"
             android:textAppearance="?android:textAppearanceLarge"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

@@ -30,7 +30,7 @@
         android:textSize="18sp"
         android:textColor="@color/text"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:textSize="14sp"
         android:textColor="@color/textHint"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         android:text="@string/nav_header_subtitle" />
 
 </LinearLayout>

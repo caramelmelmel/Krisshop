@@ -36,7 +36,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="ORDER ID"
                         android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
+                        android:textStyle="bold"
                         android:textSize="@dimen/card_order_text_size"/>
                     <TextView
                         android:id="@+id/txt_order_id"
@@ -66,7 +66,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="FLIGHT"
                         android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
+                        android:textStyle="bold"
                         android:textSize="@dimen/card_order_text_size"/>
                     <TextView
                         android:id="@+id/txt_flight_number"
@@ -75,7 +75,7 @@
                         android:layout_below="@id/txt_flight_number_title"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/proxima_nova"
-                        android:textStyle="italic"
+                        android:textStyle="normal"
                         android:text="SQ8308"
                         android:textSize="@dimen/card_order_text_size"/>
                 </RelativeLayout>
@@ -84,15 +84,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="80dp"
                 android:orientation="vertical"
                 android:background="@color/colorAccent">
 
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/lstProducts"
-                    android:layout_margin="8dp" />
                 <TextView
                     android:id="@+id/txtOrderCollected"
                     android:layout_width="wrap_content"
@@ -133,7 +128,7 @@
                             android:layout_height="wrap_content"
                             android:text="Ordered"
                             android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
+                            android:textStyle="normal"
                             android:gravity="center"
                             />
 
@@ -143,7 +138,7 @@
                             android:layout_height="wrap_content"
                             android:text="Packed"
                             android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
+                            android:textStyle="normal"
                             android:gravity="center"
                             />
 
@@ -153,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:text="Onboard"
                             android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
+                            android:textStyle="normal"
                             android:gravity="center"
                             />
 
@@ -163,7 +158,7 @@
                             android:layout_height="wrap_content"
                             android:text="Arrived"
                             android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
+                            android:textStyle="normal"
                             android:gravity="center"
                             />
 
@@ -221,6 +216,14 @@
                 android:visibility="gone">
             </android.support.v4.view.ViewPager>
 
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lstProducts"
+                android:background="@color/text"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
             <Button
                 android:id="@+id/btnConfirmReceived"
                 android:layout_gravity="right"
@@ -231,7 +234,7 @@
                 android:padding="@dimen/card_order_padding"
                 android:text="CONFIRM PACKED"
                 android:fontFamily="@font/proxima_nova"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 android:textColor="@color/text"
                 android:foreground="?android:selectableItemBackground"
                 android:background="@drawable/border_button_orange"/>

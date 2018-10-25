@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import ai.rt5k.krisshop.ModelObjects.Order;
@@ -19,6 +21,8 @@ import ai.rt5k.krisshop.R;
 public class EmployeeOrderAdapter extends RecyclerView.Adapter<EmployeeOrderAdapter.ViewHolder> {
     ArrayList<Order> orders;
     private static DecimalFormat df2 = new DecimalFormat(".00");
+    private static SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+    private static SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
     private ClickListener clickListener;
     private Context context;
 
@@ -43,8 +47,13 @@ public class EmployeeOrderAdapter extends RecyclerView.Adapter<EmployeeOrderAdap
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         Order order = orders.get(i);
         viewHolder.txtOrderName.setText(viewHolder.txtOrderName.getContext().getResources().getQuantityString(R.plurals.order_items, order.totalQuantity, order.totalQuantity));
-        viewHolder.txtOrderID.setText("#" + order.id.toUpperCase());
+        viewHolder.txtOrderID.setText("ORDER #" + order.id.toUpperCase());
         viewHolder.txtFlightNumber.setText(order.flightNumber);
+        try {
+            viewHolder.txtOrderDate.setText("PLACED: " + outputFormat.format(inputFormat.parse(order.orderedOn)).toUpperCase());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         viewHolder.position = i;
 
         if(clickListener != null) {
@@ -67,18 +76,17 @@ public class EmployeeOrderAdapter extends RecyclerView.Adapter<EmployeeOrderAdap
 
         public View itemView;
         public CardView crdOrder;
-        public TextView txtOrderID, txtOrderName, txtFlightNumber;
-        public ImageView imgOrder;
+        public TextView txtOrderID, txtOrderName, txtFlightNumber, txtOrderDate;
 
         public ViewHolder(View view) {
             super(view);
             itemView = view;
             crdOrder = view.findViewById(R.id.crdOrder);
 
-            imgOrder = view.findViewById(R.id.imgOrder);
             txtOrderID = view.findViewById(R.id.txtOrderID);
             txtOrderName = view.findViewById(R.id.txtOrderName);
             txtFlightNumber = view.findViewById(R.id.txtFlightNumber);
+            txtOrderDate = view.findViewById(R.id.txtOrderDate);
         }
     }
 }

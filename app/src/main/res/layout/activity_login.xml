@@ -41,7 +41,7 @@
         android:maxLines="1"
         android:inputType="text"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         android:imeOptions="actionNext"/>
 
     <EditText
@@ -57,7 +57,7 @@
         android:textColorHint="@color/textHint"
         android:maxLines="1"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="italic"
+        android:textStyle="normal"
         android:imeOptions="actionGo"
         android:inputType="textPassword"/>
 
@@ -74,7 +74,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:textColor="@color/text"/>
 
     <TextView
@@ -87,6 +87,6 @@
         android:textSize="14sp"
         android:textColor="@color/text"
         android:fontFamily="@font/proxima_nova"
-        android:textStyle="bold|italic"/>
+        android:textStyle="bold"/>
 
 </LinearLayout>

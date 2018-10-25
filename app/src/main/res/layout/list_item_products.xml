@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:id="@+id/txtLineItem"
+        android:gravity="center"
+        android:fontFamily="@font/proxima_nova"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:layout_width="252dp"
+        android:layout_height="match_parent"
+        android:id="@+id/txtProductName"
+        android:fontFamily="@font/proxima_nova"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorBlack"/>
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@color/colorLightGrey"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/txtQuantity"
+        android:fontFamily="@font/proxima_nova"
+        android:textColor="@color/colorBlack"
+        android:layout_gravity="right"/>
+</LinearLayout>

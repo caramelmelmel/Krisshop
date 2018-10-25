@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:id="@+id/txtItemName"
-                app:fontFamily="@font/proxima_nova"
+                app:fontFamily="@font/proxima_nova_thin"
                 android:textColor="@color/colorPrimary"
                 android:layout_margin="8dp"
                 />
@@ -50,8 +50,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtItemDescription"
                 android:fontFamily="@font/proxima_nova"
-                android:textStyle="italic"
-                android:layout_margin="8dp"/>
+                android:textStyle="normal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -72,7 +73,7 @@
                     android:textAppearance="?android:textAppearanceLarge"
                     android:layout_weight="1"
                     android:fontFamily="@font/proxima_nova"
-                    android:textStyle="italic"
+                    android:textStyle="normal"
                     android:textSize="24sp"
                     />
                 <TextView
@@ -82,7 +83,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:fontFamily="@font/proxima_nova"
-                    android:textStyle="italic"
+                    android:textStyle="normal"
                     android:gravity="right"/>
             </LinearLayout>
             <Button
@@ -97,7 +98,7 @@
                 android:textSize="18sp"
                 android:foreground="?android:selectableItemBackground"
                 android:fontFamily="@font/proxima_nova"
-                android:textStyle="italic"
+                android:textStyle="normal"
                 android:layout_gravity="bottom"
                 android:background="@drawable/border_button_orange"/>
         </LinearLayout>

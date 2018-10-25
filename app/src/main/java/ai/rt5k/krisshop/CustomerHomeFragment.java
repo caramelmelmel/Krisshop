@@ -46,10 +46,6 @@ import ai.rt5k.krisshop.RecyclerViewAdapters.ProductAdapter;
 public class CustomerHomeFragment extends Fragment {
     RecyclerView lstBestSellers, lstNewProducts;
 
-    // TODO: Remove dummy data
-    String[] names = {"PRECIOUS MOMENTS \"SINGAPORE GIRL\" (70TH ANNIVERSARY)", "Product 2", "Product 3", "Product 4"};
-    float[] prices = {10.0f, 1.0f, 2.55f, 10.70f};
-
     ArrayList<Product> bestSellers;
     BestSellerAdapter bestSellerAdapter;
     ProductAdapter newProductAdapter;
@@ -71,7 +67,7 @@ public class CustomerHomeFragment extends Fragment {
         builder.setCancelable(false);
 
         Drawable drawable = new ProgressBar(getContext()).getIndeterminateDrawable().mutate();
-        drawable.setColorFilter(getContext().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        drawable.setColorFilter(getContext().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         builder.setIndeterminateDrawable(drawable);
 
         builder.show();
@@ -99,6 +95,7 @@ public class CustomerHomeFragment extends Fragment {
                     for(int i = 0; i < responseArray.length(); i++) {
                         JSONObject o = responseArray.getJSONObject(i);
                         Product p = new Product();
+                        p.id = o.getInt("id");
                         p.name = o.getString("name");
                         p.price = Float.parseFloat(o.getString("price").substring(1).replace(",",""));
                         p.miles = Integer.parseInt(o.getString("miles").split(" ")[0].replace(",", ""));
@@ -169,7 +166,6 @@ public class CustomerHomeFragment extends Fragment {
                 newProductAdapter.setOnClickListener(new ClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        // TODO: Load product view activity
                         Intent viewProductIntent = new Intent(getContext(), CustomerViewProductActivity.class);
                         Bundle b = new Bundle();
                         b.putSerializable("product", products.get(position));

@@ -63,7 +63,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".EmConfirmActivity"></activity>
+        <activity android:name=".EmConfirmActivity" />
+        <activity android:name=".CustomerViewImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

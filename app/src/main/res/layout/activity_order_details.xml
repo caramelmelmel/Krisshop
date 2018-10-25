@@ -19,299 +19,398 @@
             app:titleTextAppearance="@style/Toolbar.TitleText" />
 
     </android.support.design.widget.AppBarLayout>
-    <android.support.v7.widget.CardView
-        android:layout_marginLeft="@dimen/card_order_side_margin"
-        android:layout_marginRight="@dimen/card_order_side_margin"
-        android:layout_marginTop="16dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/backgroundGrey">
-
-        <LinearLayout
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_marginLeft="@dimen/card_order_side_margin"
+            android:layout_marginRight="@dimen/card_order_side_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/card_order_padding"
-            android:orientation="vertical">
+            app:cardBackgroundColor="@color/backgroundGrey">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/card_order_side_margin"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/txt_order_id_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="ORDER ID"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                    <TextView
-                        android:id="@+id/txt_order_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txt_order_id_title"
-                        android:layout_centerHorizontal="true"
-                        android:text="#12345678"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
-                    android:background="@color/colorGrey"/>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/txt_amount_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="AMOUNT"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                    <TextView
-                        android:id="@+id/txt_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txt_amount_title"
-                        android:layout_centerHorizontal="true"
-                        android:text="SGD 999"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
-                    android:background="@color/colorGrey"/>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/txt_flight_number_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="FLIGHT"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                    <TextView
-                        android:id="@+id/txt_flight_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txt_flight_number_title"
-                        android:layout_centerHorizontal="true"
-                        android:text="SQ8308"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="italic"
-                        android:textSize="@dimen/card_order_text_size"/>
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:orientation="vertical"
-                android:background="@color/colorAccent"
-                android:weightSum="2">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/card_order_padding"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/card_order_side_margin"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/txt_order_day"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Placed on Sunday,"
-                        android:textColor="@color/colorBlack"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="italic"
-                        android:layout_gravity="center"
-                        />
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/txt_order_id_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="ORDER ID"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/card_order_text_size"/>
+                        <TextView
+                            android:id="@+id/txt_order_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_order_id_title"
+                            android:layout_centerHorizontal="true"
+                            android:text="#12345678"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/card_order_text_size"/>
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/txt_order_date"
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:background="@color/colorGrey"/>
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="September 16, 2018 at 02:55 pm"
-                        android:fontFamily="@font/proxima_nova"
-                        android:textStyle="bold|italic"
-                        android:textColor="@color/colorBlack"/>
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/txt_amount_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="AMOUNT"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/card_order_text_size"/>
+                        <TextView
+                            android:id="@+id/txt_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_amount_title"
+                            android:layout_centerHorizontal="true"
+                            android:text="SGD 999"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/card_order_text_size"/>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dp"
+                        android:background="@color/colorGrey"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/txt_flight_number_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="FLIGHT"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/card_order_text_size"/>
+                        <TextView
+                            android:id="@+id/txt_flight_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txt_flight_number_title"
+                            android:layout_centerHorizontal="true"
+                            android:text="SQ8308"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="normal"
+                            android:textSize="@dimen/card_order_text_size"/>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtOrderCollected"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Order Collected"
-                    android:textColor="@color/colorOK"
-                    android:visibility="gone"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorAccent"
+                    android:weightSum="2">
 
-                <RelativeLayout
-                    android:id="@+id/layoutProgressSection"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_order_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Placed on Sunday,"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="normal"
+                            android:layout_gravity="center"
+                            />
+
+                        <TextView
+                            android:id="@+id/txt_order_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="September 16, 2018 at 02:55 pm"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorBlack"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtOrderCollected"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Order Collected"
+                        android:textColor="@color/colorOK"
+                        android:visibility="gone"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutProgressSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        >
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerVertical="true"
+                            android:progress="12"
+                            android:max="100"
+                            android:id="@+id/prgStatus"
+                            android:progressBackgroundTint="@color/colorGrey"
+                            android:progressTint="@color/colorAlert"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@id/layoutProgressBar"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ordered"
+                                android:fontFamily="@font/proxima_nova"
+                                android:textStyle="normal"
+                                android:gravity="center"
+                                />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Packed"
+                                android:fontFamily="@font/proxima_nova"
+                                android:textStyle="normal"
+                                android:gravity="center"
+                                />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Onboard"
+                                android:fontFamily="@font/proxima_nova"
+                                android:textStyle="normal"
+                                android:gravity="center"
+                                />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Arrived"
+                                android:fontFamily="@font/proxima_nova"
+                                android:textStyle="normal"
+                                android:gravity="center"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutProgressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <ImageView
+                                android:id="@+id/checkpointOrdered"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/checkpoint_active"
+                                />
+
+                            <ImageView
+                                android:id="@+id/checkpointPacked"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/checkpoint_inactive"
+                                />
+
+                            <ImageView
+                                android:id="@+id/checkpointOnboard"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/checkpoint_inactive"
+                                />
+
+                            <ImageView
+                                android:id="@+id/checkpointArrived"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/checkpoint_inactive"
+                                />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    >
+                    android:id="@+id/imgPhoto"
+                    android:src="@drawable/pack"
+                    android:layout_marginTop="4dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    android:background="@color/text"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:id="@+id/lytButtons">
+                    <Button
+                        android:id="@+id/btnCancelReport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/card_order_padding"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:elevation="0dp"
+                        android:padding="@dimen/card_order_padding"
+                        android:text="CANCEL"
+                        android:fontFamily="@font/proxima_nova"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        android:background="@drawable/border_button_grey"/>
+                    <Button
+                        android:id="@+id/btnConfirmReceived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/card_order_padding"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:elevation="0dp"
+                        android:padding="@dimen/card_order_padding"
+                        android:text="CONFIRM RECEIVED"
+                        android:fontFamily="@font/proxima_nova"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        android:background="@drawable/border_button_orange"/>
+                </LinearLayout>
 
-                    <ProgressBar
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerVertical="true"
-                        android:progress="12"
-                        android:max="100"
-                        android:id="@+id/prgStatus"
-                        android:progressBackgroundTint="@color/colorGrey"
-                        android:progressTint="@color/colorAlert"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        />
-
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lytReport"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp">
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_above="@id/layoutProgressBar"
-                        android:weightSum="4">
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ordered"
-                            android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
-                            android:gravity="center"
-                            />
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Packed"
-                            android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
-                            android:gravity="center"
-                            />
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Onboard"
-                            android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
-                            android:gravity="center"
-                            />
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Arrived"
-                            android:fontFamily="@font/proxima_nova"
-                            android:textStyle="italic"
-                            android:gravity="center"
-                            />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutProgressBar"
+                        android:fontFamily="@font/proxima_nova"
+                        android:textStyle="bold"
+                        android:text="REASON FOR REPORT"
+                        android:textColor="@color/colorBlack"/>
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/spnReportReason"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:orientation="horizontal"
-                        android:weightSum="4">
-
-                        <ImageView
-                            android:id="@+id/checkpointOrdered"
-                            android:layout_weight="1"
+                        android:fontFamily="@font/proxima_nova"
+                        android:textStyle="bold"
+                        android:text="MESSAGE"
+                        android:textColor="@color/colorBlack"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="196dp"
+                        android:id="@+id/edtMessage"
+                        android:inputType="text|textMultiLine"
+                        android:fontFamily="@font/proxima_nova"
+                        android:textStyle="normal"
+                        android:gravity="top"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right">
+                        <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/checkpoint_active"
-                            />
-
-                        <ImageView
-                            android:id="@+id/checkpointPacked"
-                            android:layout_weight="1"
+                            android:id="@+id/btnCancel"
+                            android:text="CANCEL"
+                            android:paddingRight="8dp"
+                            android:paddingLeft="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textColor="@color/text"
+                            android:background="@drawable/border_button_grey"/>
+                        <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/checkpoint_inactive"
-                            />
-
-                        <ImageView
-                            android:id="@+id/checkpointOnboard"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/checkpoint_inactive"
-                            />
-
-                        <ImageView
-                            android:id="@+id/checkpointArrived"
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/checkpoint_inactive"
-                            />
-
+                            android:id="@+id/btnSubmitReport"
+                            android:text="SUBMIT REPORT"
+                            android:paddingRight="8dp"
+                            android:paddingLeft="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/proxima_nova"
+                            android:textStyle="bold"
+                            android:textColor="@color/text"
+                            android:background="@drawable/border_button_orange"/>
                     </LinearLayout>
-                </RelativeLayout>
 
+                </LinearLayout>
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/imgPhoto"
-                android:src="@drawable/pack"
-                android:layout_marginTop="8dp"
-                android:visibility="gone"/>
-
-            <Button
-                android:id="@+id/btnConfirmReceived"
-                android:layout_gravity="right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/card_order_padding"
-                android:elevation="0dp"
-                android:padding="@dimen/card_order_padding"
-                android:text="CONFIRM RECEIVED"
-                android:fontFamily="@font/proxima_nova"
-                android:textStyle="bold|italic"
-                android:textColor="@color/text"
-                android:background="@drawable/border_button_orange"/>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
+        </android.support.v7.widget.CardView>
+    </ScrollView>
 </LinearLayout>
